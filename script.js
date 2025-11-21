@@ -41,3 +41,18 @@ document.getElementById("tg-form").addEventListener("submit", function (e) {
     document.getElementById("status").textContent = "❌ Не удалось отправить сообщение.";
   });
 });
+
+// Быстрый заказ из карточки товара
+document.querySelectorAll(".buy-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const product = button.dataset.product;
+    const form = document.getElementById("tg-form");
+    const commentField = form?.querySelector("textarea[name='comment']");
+
+    if (commentField) {
+      commentField.value = `Хочу приобрести: ${product}`;
+    }
+
+    form?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
