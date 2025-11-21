@@ -1,43 +1,71 @@
-document.getElementById("tg-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+const form = document.getElementById("tg-form");
+const statusEl = document.getElementById("status");
+const commentField = form?.querySelector("textarea[name='comment']");
 
-  const name = this.name.value.trim();
-  const phone = this.phone.value.trim();
-  const preferredDay = this.preferred_day.value.trim();
-  const comment = this.comment.value.trim();
+// Telegram form submit
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  if (!name || !phone) {
-    document.getElementById("status").textContent = "❌ Укажите имя и телефон.";
-    return;
-  }
+    const name = this.name.value.trim();
+    const phone = this.phone.value.trim();
+    const preferredDay = this.preferred_day.value.trim();
+    const comment = this.comment.value.trim();
 
-  const lines = [
-    "🦶 Новая заявка",
-    `👤 Имя: ${name}`,
-    `📞 Телефон: ${phone}`,
-    preferredDay ? `🗓 Предпочтительный день: ${preferredDay}` : null,
-    comment ? `💬 Комментарий: ${comment}` : null
-  ].filter(Boolean);
-
-  const message = lines.join("\n");
-
-  fetch("https://api.telegram.org/bot7673985541:AAH2PnkO-TW1i09ZSHFwMLa7Gj8NghOZi14/sendMessage", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: "2091631815",
-      text: message
-    })
-  })
-  .then(res => {
-    if (res.ok) {
-      document.getElementById("status").textContent = "✅ Заявка отправлена! Я свяжусь с вами.";
-      this.reset();
-    } else {
-      document.getElementById("status").textContent = "❌ Ошибка при отправке. Попробуйте ещё раз.";
+    if (!name || !phone) {
+      statusEl.textContent = "❌ Укажите имя и телефон.";
+      return;
     }
-  })
-  .catch(() => {
-    document.getElementById("status").textContent = "❌ Не удалось отправить сообщение.";
+
+    const lines = [
+      "🦶 Новая заявка",
+      `👤 Имя: ${name}`,
+      `📞 Телефон: ${phone}`,
+      preferredDay ? `🗓 Предпочтительный день: ${preferredDay}` : null,
+      comment ? `💬 Комментарий: ${comment}` : null
+    ].filter(Boolean);
+
+    const message = lines.join("\n");
+
+    fetch("https://api.telegram.org/bot7673985541:AAH2PnkO-TW1i09ZSHFwMLa7Gj8NghOZi14/sendMessage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: "2091631815",
+        text: message
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          statusEl.textContent = "✅ Заявка отправлена! Я свяжусь с вами.";
+          this.reset();
+          this.preferred_day.value = "";
+        } else {
+          statusEl.textContent = "❌ Ошибка при отправке. Попробуйте ещё раз.";
+        }
+      })
+      .catch(() => {
+        statusEl.textContent = "❌ Не удалось отправить сообщение.";
+      });
+  });
+}
+
+// Mobile menu toggle
+const header = document.querySelector(".floating-header");
+const toggle = document.querySelector(".menu-toggle");
+if (toggle && header) {
+  toggle.addEventListener("click", () => header.classList.toggle("active"));
+  header.querySelectorAll("nav a").forEach(link => link.addEventListener("click", () => header.classList.remove("active")));
+}
+
+// Prefill comment when clicking buy buttons
+const buyButtons = document.querySelectorAll(".buy");
+buyButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const product = btn.dataset.product || "";
+    if (commentField) {
+      commentField.value = `Хочу купить: ${product}`;
+    }
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   });
 });

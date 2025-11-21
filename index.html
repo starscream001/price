@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Подология — Мария Колесник</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header>
+<header class="floating-header">
+  <div class="brand">Мария Колесник</div>
+  <button class="menu-toggle" aria-label="Открыть меню">☰</button>
   <nav>
     <a href="#services">Услуги</a>
+    <a href="#store">Магазин</a>
     <a href="#schedule">Расписание</a>
     <a href="#about">О специалисте</a>
     <a href="#contact">Запись</a>
@@ -18,191 +21,409 @@
 </header>
 <main>
   <section id="hero" class="hero-section">
-  <h1 class="gradient-title">Мария Колесник</h1>
-  <div class="hero-subblock">
-    <h2>Дипломированный подолог, стаж 24 года</h2>
-    <p>
-      Профессиональный медицинский педикюр с индивидуальным подходом.<br>
-      Квалифицированная помощь при любых проблемах стоп и ногтей.<br>
-      Забота о здоровье, эстетике и комфорте клиентов.
+    <div class="hero-badge">премиальная подология & уход</div>
+    <h1 class="gradient-title">Ухоженные стопы — уверенность каждый день</h1>
+    <div class="hero-subblock">
+      <h2>Мария Колесник — дипломированный подолог, 24 года стажа</h2>
+      <p>
+        Медицинский педикюр, восстановление ногтей и персональный домашний уход.
+        Работаю бережно и стерильно, подбираю средства под ваши задачи.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#contact">Записаться</a>
+        <a class="btn ghost" href="#store">Посмотреть магазин</a>
+      </div>
+      <div class="hero-meta">
+        <span>Всеволожск, Октябрьский пр. 90</span>
+        <span>Пн • Пт • Сб — 10:00–18:00</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <h2 class="gradient-title">✨ Услуги профессионального педикюра</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🧼</div>
+        <div>
+          <h3 class="service-title">Профилактический аппаратный педикюр</h3>
+          <div class="service-price">3000₽</div>
+          <p>Аппаратная обработка 10 ногтевых пластин и стоп. Мягкое удаление гиперкератоза, профилактика вросших ногтей.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🩺</div>
+        <div>
+          <h3 class="service-title">Медицинский аппаратный педикюр</h3>
+          <div class="service-price">3500₽</div>
+          <p>Работа с гиперкератозом, диабетической стопой и псориазом. Безопасность и стерильность на медицинском уровне.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✂️</div>
+        <div>
+          <h3 class="service-title">Классический педикюр</h3>
+          <div class="service-price">2500₽</div>
+          <p>Бритвенная обработка стоп и уход за 10 ногтями. Классика педикюра с современными протоколами стерилизации.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <div>
+          <h3 class="service-title">Комбинированный педикюр</h3>
+          <div class="service-price">3000₽</div>
+          <p>Аппарат + классика: выбираем технику под каждую зону стопы, чтобы сохранить комфорт и результат.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👣</div>
+        <div>
+          <h3 class="service-title">Аппаратный педикюр без обработки стоп</h3>
+          <div class="service-price">2000₽</div>
+          <p>Профилактика здоровых ногтей (10 пластин). Чистота и блеск без нагрузки на кожу стоп.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👣</div>
+        <div>
+          <h3 class="service-title">Патология ногтей — средняя сложность</h3>
+          <div class="service-price">2500₽</div>
+          <p>Аппаратная обработка ногтевых пластин с онихомикозом без работы по стопам.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👣</div>
+        <div>
+          <h3 class="service-title">Патология ногтей — высокая сложность</h3>
+          <div class="service-price">3000₽</div>
+          <p>Деликатная обработка сложных случаев онихомикоза, подбор домашнего ухода.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧴</div>
+        <div>
+          <h3 class="service-title">Обработка кожи двух стоп</h3>
+          <div class="service-price">1500₽</div>
+          <p>Быстрое обновление кожи без патологий — для тех, кто любит лёгкость в шаге.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚑</div>
+        <div>
+          <h3 class="service-title">Гиперкератоз и трещины</h3>
+          <div class="service-price">2000₽</div>
+          <p>Глубокая проработка натоптышей, трещин и псориаза без работы по ногтям.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔨</div>
+        <div>
+          <h3 class="service-title">Удаление одной мозоли</h3>
+          <div class="service-price">900₽</div>
+          <p>Стержневые, плоские, межпальцевые мозоли — безболезненно и аккуратно.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💅</div>
+        <div>
+          <h3 class="service-title">Вросший ноготь (1 зона)</h3>
+          <div class="service-price">1000₽</div>
+          <p>Коррекция формы, снижение воспаления, рекомендации по домашнему уходу.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧵</div>
+        <div>
+          <h3 class="service-title">Нитиноловая нить — большой палец</h3>
+          <div class="service-price">3000₽</div>
+          <p>Коррекция вросшего ногтя современной нитиноловой системой без боли.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧵</div>
+        <div>
+          <h3 class="service-title">Нитиноловая нить — маленький палец</h3>
+          <div class="service-price">1500₽</div>
+          <p>Комфортная коррекция, не мешает привычному образу жизни.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-me">
+      <div class="why-left">
+        <b>Почему именно у меня</b>
+        <ul>
+          <li>3-этапная стерилизация и одноразовые расходники</li>
+          <li>Гипоаллергенные средства и деликатные протоколы</li>
+          <li>Индивидуальный подбор домашнего ухода</li>
+          <li>Клиентский сервис: напоминания, фото-прогресс, рекомендации</li>
+        </ul>
+      </div>
+      <div class="why-right">
+        <b>Запишитесь сейчас — ваши ноги скажут «спасибо»!</b>
+        <p>Помогаю всей семье поддерживать лёгкость шагов и уверенность в каждом движении.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="store" class="section store-section">
+    <div class="section-heading">
+      <h2 class="gradient-title">🛍 Магазин средств домашнего ухода</h2>
+      <p class="section-lead">Выбирайте профессиональные продукты, а оформить покупку можно у Марии — я помогу подобрать идеальный уход.</p>
+    </div>
+    <div class="store-grid">
+      <article class="product-card" data-name="Масло молекулярное SMART" data-link="https://pollylook.com/catalog/tproduct/818258500-915383082642-maslo-molekulyarnoe-smart-dlya-polirovki">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Масло молекулярное SMART</h3>
+          <p>Масло для полировки ногтей: придаёт зеркальный блеск, питает пластину и защищает от пересушивания.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-915383082642-maslo-molekulyarnoe-smart-dlya-polirovki" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Масло молекулярное SMART">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Биовоск регенерирующий" data-link="https://pollylook.com/catalog/tproduct/818258500-843834728042-biovosk-regeneriruyuschii">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Биовоск регенерирующий</h3>
+          <p>Интенсивно питает кутикулу и ногтевую пластину, ускоряет заживление микротрещин, придаёт ухоженный вид.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-843834728042-biovosk-regeneriruyuschii" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Биовоск регенерирующий">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Крем от мозолей и натоптышей" data-link="https://pollylook.com/catalog/tproduct/818258500-329772559592-krem-ot-mozolei-i-natoptishei-150-ml">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Крем от мозолей и натоптышей</h3>
+          <p>Смягчает огрубевшие участки, облегчает снятие натоптышей и поддерживает гладкость кожи стоп.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-329772559592-krem-ot-mozolei-i-natoptishei-150-ml" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Крем от мозолей и натоптышей">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Крем от трещин с монардой" data-link="https://pollylook.com/catalog/tproduct/818258500-495224069042-krem-ot-treschin-s-monardoi">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Крем от трещин с монардой</h3>
+          <p>Успокаивает и восстанавливает потрескавшуюся кожу пяток, ускоряет регенерацию и снимает стянутость.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-495224069042-krem-ot-treschin-s-monardoi" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Крем от трещин с монардой">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Сыворотка SOS Онихолизис" data-link="https://pollylook.com/catalog/tproduct/818258500-559624973012-sivorotka-sos-oniholizis-dlya-nogtei-30">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Сыворотка SOS Онихолизис</h3>
+          <p>Формула для восстановления ногтевой пластины при онихолизисе: укрепляет сцепление, увлажняет и защищает.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-559624973012-sivorotka-sos-oniholizis-dlya-nogtei-30" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Сыворотка SOS Онихолизис">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Масло SOS Онихолизис" data-link="https://pollylook.com/catalog/tproduct/818258500-929825269612-maslo-sos-oniholizis-dlya-vosstanovleniy">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Масло SOS Онихолизис</h3>
+          <p>Питательное масло для восстановления ногтей: смягчает, защищает свободный край и поддерживает рост.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-929825269612-maslo-sos-oniholizis-dlya-vosstanovleniy" target="_blank" rel="noopener">Описание и фото</a>
+          <button class="btn primary buy" data-product="Масло SOS Онихолизис">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Лосьон при гипергидрозе" data-link="https://pollylook.com/catalog/tproduct/818258500-821454515222-loson-pri-gipergidroze-150-ml">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Лосьон при гипергидрозе</h3>
+          <p>Регулирует потоотделение, сохраняет комфорт и свежесть стоп, не нарушая естественный баланс кожи.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-821454515222-loson-pri-gipergidroze-150-ml" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Лосьон при гипергидрозе">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Сыворотка восстанавливающая «Терапевт»" data-link="https://pollylook.com/catalog/tproduct/818258500-823285380402-sivorotka-vosstanavlivayuschaya-terapevt">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Сыворотка восстанавливающая «Терапевт»</h3>
+          <p>Комплексный уход для ослабленных ногтей: укрепляет, выравнивает поверхность и дарит здоровый блеск.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-823285380402-sivorotka-vosstanavlivayuschaya-terapevt" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Сыворотка восстанавливающая «Терапевт»">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Биовоск терапевтический с противогрибковым эффектом" data-link="https://pollylook.com/catalog/tproduct/818258500-238454690072-biovosk-terapevticheskii-s-protivogribko">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Биовоск терапевтический с противогрибковым эффектом</h3>
+          <p>Создаёт защитную плёнку, питает ноготь и содержит компоненты для профилактики грибковых поражений.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-238454690072-biovosk-terapevticheskii-s-protivogribko" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Биовоск терапевтический">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Лосьон терапевтический" data-link="https://pollylook.com/catalog/tproduct/818258500-844988151422-loson-terapevticheskii-s-protivogribkovi">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Лосьон терапевтический с противогрибковыми компонентами</h3>
+          <p>Удобный формат для домашней обработки стоп и ногтей, поддерживает чистоту и ухоженный вид.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-844988151422-loson-terapevticheskii-s-protivogribkovi" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Лосьон терапевтический">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Терапевтический крем для проблемной кожи" data-link="https://pollylook.com/catalog/tproduct/818258500-540519584802-terapevticheskii-krem-dlya-problemnoi-ko">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Терапевтический крем для проблемной кожи</h3>
+          <p>Смягчающая формула для раздражённой и склонной к трещинам кожи стоп, помогает удерживать влагу.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-540519584802-terapevticheskii-krem-dlya-problemnoi-ko" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Терапевтический крем для проблемной кожи">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Сыворотка для укрепления повреждённых ногтей" data-link="https://pollylook.com/catalog/tproduct/818258500-545745307272-sivorotka-dlya-ukrepleniya-povrezhdennih">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Сыворотка для укрепления повреждённых ногтей</h3>
+          <p>Укрепляет и уплотняет ногтевую пластину, снижает ломкость и расслаивание.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-545745307272-sivorotka-dlya-ukrepleniya-povrezhdennih" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Сыворотка для укрепления повреждённых ногтей">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Лосьон Propolisoft" data-link="https://pollylook.com/catalog/tproduct/818258500-386697822432-loson-propolisoft-kompleks-15-ml">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Лосьон Propolisoft, 15 мл</h3>
+          <p>Комплекс с прополисом для деликатной обработки кожи и ногтей, поддерживает чистоту и комфорт.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-386697822432-loson-propolisoft-kompleks-15-ml" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Лосьон Propolisoft">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Лосьон Propolistrong" data-link="https://pollylook.com/catalog/tproduct/818258500-150897344792-loson-propolistrong-intensiv-15-ml">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Лосьон Propolistrong, 15 мл</h3>
+          <p>Интенсивная формула с прополисом для точечной работы по проблемным зонам ногтей и кожи.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-150897344792-loson-propolistrong-intensiv-15-ml" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Лосьон Propolistrong">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Биовоск от трещин и шелушений" data-link="https://pollylook.com/catalog/tproduct/818258500-625132833562-biovosk-ot-treschin-i-shelushenii-bezupr">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Биовоск от трещин и шелушений «Безупречные пятки»</h3>
+          <p>Создаёт защитный барьер, убирает ощущение сухости и помогает пяткам оставаться гладкими.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-625132833562-biovosk-ot-treschin-i-shelushenii-bezupr" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Биовоск от трещин и шелушений">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Крем-баттер эксперт-уход" data-link="https://pollylook.com/catalog/tproduct/818258500-203894539272-krem-batter-ekspert-uhod-s-maslom-shi">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Крем-баттер эксперт-уход с маслом ши</h3>
+          <p>Плотная текстура с маслом ши глубоко питает и смягчает кожу стоп, подходит для ночного ухода.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-203894539272-krem-batter-ekspert-uhod-s-maslom-shi" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Крем-баттер эксперт-уход">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+      <article class="product-card" data-name="Лосьон защищающий для кожи ног" data-link="https://pollylook.com/catalog/tproduct/818258500-766442007252-loson-zaschischayuschiy-dlya-kozhi-nog-s">
+        <div class="product-media">Фото по ссылке</div>
+        <div class="product-body">
+          <h3>Лосьон защищающий для кожи ног с прополисом</h3>
+          <p>Создаёт лёгкий защитный слой, помогает поддерживать кожу ног в тонусе и чистоте между процедурами.</p>
+          <div class="product-actions">
+            <a class="btn ghost" href="https://pollylook.com/catalog/tproduct/818258500-766442007252-loson-zaschischayuschiy-dlya-kozhi-nog-s" target="_blank" rel="noopener">Описание и фото</a>
+            <button class="btn primary buy" data-product="Лосьон защищающий для кожи ног">Купить у Марии</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="store-note">Весь ассортимент можно купить напрямую у Марии. Нужна помощь с выбором? Напишите, и я подберу персональный набор.</div>
+  </section>
+
+  <section id="schedule" class="section">
+    <h2 class="gradient-title">Расписание</h2>
+    <table>
+      <tr><td>Рабочие дни:</td><td>Понедельник, пятница и суббота</td></tr>
+      <tr><td>Время приема:</td><td>10:00, 12:00, 14:00, 16:00, 18:00</td></tr>
+      <tr><td>Адрес:</td><td>Всеволожск, Октябрьский пр. 90</td></tr>
+      <tr><td>Отпуск:</td><td>Июль</td></tr>
+    </table>
+  </section>
+
+  <section id="about" class="section about-section">
+    <div class="about-card">
+      <div class="about-photo-wrap">
+        <img src="maria.jpg" alt="Фото Марии Колесник" class="about-photo-large">
+      </div>
+      <div class="about-text">
+        <h2 class="gradient-title">О специалисте</h2>
+        <p>Мария Колесник — дипломированный подолог с медицинским образованием (специальность «Сестринское дело»). Работает 24 года, соединяя медицинский подход, комфорт и эстетический результат для клиентов любого возраста.</p>
+        <div class="about-tags">
+          <span>Медицинские протоколы</span>
+          <span>Стерильные инструменты</span>
+          <span>Домашний уход</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2 class="gradient-title">Оставьте заявку</h2>
+    <p class="info-text" style="margin:8px 0 16px;line-height:1.5">
+      Принимаю по <b>понедельникам, пятницам и субботам</b>. Напишите контакты — я свяжусь с вами и предложу время.
     </p>
-  </div>
-</section>
 
-<section id="services" class="section">
-  <h2 class="gradient-title">✨ Услуги профессионального педикюра</h2>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon">🧼</div>
-      <div>
-        <h3 class="gradient-title">Профилактический аппаратный педикюр</h3>
-        <div class="service-price">3000₽</div>
-        <p>Аппаратная обработка 10 ногтевых пластин + стопы без боли. Удаление огрубевшей кожи, профилактика вросших ногтей. Идеально для регулярного ухода.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🩺</div>
-      <div>
-        <h3 class="gradient-title">Медицинский аппаратный педикюр</h3>
-        <div class="service-price">3500₽</div>
-        <p>Профессиональная обработка при гиперкератозе, диабетической стопе, псориазе. Безопасно, стерильно, с индивидуальным подбором средств для домашнего ухода.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">✂️</div>
-      <div>
-        <h3 class="gradient-title">Классический педикюр</h3>
-        <div class="service-price">2500₽</div>
-        <p>Обработка стоп бритвенным станком + 10 ногтевых пластин. Техника выполнения в лучших традициях классической школы педикюра.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🔄</div>
-      <div>
-        <h3 class="gradient-title">Комбинированный педикюр</h3>
-        <div class="service-price">3000₽</div>
-        <p>Сочетание аппарата + классики. Индивидуальный подход к каждой стопе.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">👣</div>
-      <div>
-        <h3 class="gradient-title">Профилактический аппаратный педикюр на здоровые ногти (обработка 10 ногтевых пластин,без стоп)</h3>
-        <div class="service-price">2000₽</div>
-        <p></p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">👣</div>
-      <div>
-        <h3 class="gradient-title">Медицинский аппаратный педикюр при патологии ногтей средней сложности (обработка 10 ногтевых пластин ,без стоп)</h3>
-        <div class="service-price">2500₽</div>
-        <p>Обработка ногтевых пластин с онихомикозом.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">👣</div>
-      <div>
-        <h3 class="gradient-title">Медицинский аппаратный педикюр при патологии ногтей высокой сложности (обработка 10 ногтевых поастин ,без стоп )</h3>
-        <div class="service-price">3000₽</div>
-        <p>Обработка ногтевых пластин с онихомикозом.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">👣</div>
-      <div>
-        <h3 class="gradient-title">Обработка кожи двух стоп (без патологий)</h3>
-        <div class="service-price">1500₽</div>
-        <p>Для тех, кто ценит быстроту и ухоженный вид.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🚑</div>
-      <div>
-        <h3 class="gradient-title">Обработка кожи с гиперкератозом, трещинами</h3>
-        <div class="service-price">2000₽</div>
-        <p>Глубокое удаление натоптышей, проработка трещин, псориаз, ДС. Без обработки ногтей.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🔨</div>
-      <div>
-        <h3 class="gradient-title">Удаление одной мозоли</h3>
-        <div class="service-price">900₽</div>
-        <p>Стержневые, плоские, межпальцевые мозоли.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">💅</div>
-      <div>
-        <h3 class="gradient-title">Обработка вросшего ногтя (1 зона)</h3>
-        <div class="service-price">1000₽</div>
-        <p>Корректируем форму, снимаем воспаление.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🧵</div>
-      <div>
-        <h3 class="gradient-title">Нитиноловая нить (большой палец)</h3>
-        <div class="service-price">3000₽</div>
-        <p>Коррекция с помощью нитиноловой нити.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🧵</div>
-      <div>
-        <h3 class="gradient-title">Нитиноловая нить (маленький палец)</h3>
-        <div class="service-price">1500₽</div>
-        <p>Без боли, не влияет на образ жизни.</p>
-      </div>
-    </div>
-  </div>
-  <div class="why-me">
-    <b>Почему стоит выбрать педикюр именно у меня?</b><br>
-    • Все инструменты проходят 3-этапную стерилизацию<br>
-    • Использую гипоаллергенные средства<br>
-    • Индивидуальный подход<br>
-    • Дружелюбная обстановка<br>
-    • Педикюр для ВСЕЙ СЕМЬИ<br>
-    <b>Запишитесь сейчас — ваши ноги скажут «спасибо»!</b>
-  </div>
-</section>
-<section id="schedule" class="section">
-  <h2 class="gradient-title">Расписание</h2>
-  <table>
-    <tr><td>Рабочий день:</td><td>Понедельник, пятница и суббота</td></tr>
-    <tr><td>Время приема:</td><td>10:00, 12:00, 14:00, 16:00, 18:00</td></tr>
-    <tr><td>Адрес:</td><td>Всеволожск, Октябрьский пр.90</td></tr>
-    <tr><td>Отпуск:</td><td>Июль</td></tr>
-  </table>
-</section>
-<section id="about" class="section">
-  <h2 class="gradient-title">О специалисте</h2>
-  <div class="about-photo-wrap">
-    <img src="maria.jpg" alt="Фото Марии Колесник" class="about-photo-large">
-  </div>
-  <div class="about-text">
-    <p>Мария Колесник — дипломированный подолог с медицинским образованием (специальность «Сестринское дело»). Опытный мастер педикюра, оказывающий услуги с соблюдением медицинских стандартов и индивидуальным подходом к каждому клиенту.</p>
-  </div>
-</section>
-<section id="contact" class="section">
-  <h2 class="gradient-title">Оставьте заявку</h2>
-  <p class="info-text" style="margin:8px 0 16px;line-height:1.5">
-    Я принимаю по <b>понедельникам, пятницам и субботам</b>.  
-    Просто оставьте контакты — и я сам свяжусь с вами для согласования удобного времени.
-  </p>
+    <form id="tg-form">
+      <input type="text" name="name" placeholder="Ваше имя" required />
+      <input type="tel" name="phone" placeholder="Ваш телефон" required />
 
-  <form id="tg-form">
-<input type="text" name="name" placeholder="Ваше имя" required />
-<input type="tel" name="phone" placeholder="Ваш телефон" required />
+      <select name="preferred_day" aria-label="Предпочтительный день">
+        <option value="" selected>День (необязательно)</option>
+        <option>Понедельник</option>
+        <option>Пятница</option>
+        <option>Суббота</option>
+      </select>
+      <p class="hint">Работаю: Пн, Пт, Сб. Свяжусь и назначу время.</p>
 
-<select name="preferred_day" aria-label="Предпочтительный день">
-  <option value="" selected>День (необязательно)</option>
-  <option>Понедельник</option>
-  <option>Пятница</option>
-  <option>Суббота</option>
-</select>
-<p class="hint">Работаю: Пн, Пт, Сб. Свяжусь и назначу время.</p>
+      <textarea name="comment" rows="5" placeholder="Пожелания / комментарий (необязательно)"></textarea>
+      <input type="submit" value="Оставить заявку" />
+      <p id="status" class="status"></p>
+    </form>
 
-<textarea name="comment" rows="5" placeholder="Пожелания / комментарий (необязательно)"></textarea>
-<input type="submit" value="Оставить заявку" />
-<p id="status" style="margin-top:10px;color:#00ffd0;"></p>
-  </form>
-
-  <div class="social">
-    <a href="https://vk.com/maria_masyana" target="_blank">VK</a> |
-    <a href="https://telegram.me/Maria_Masyana" target="_blank">Telegram</a> |
-    <a href="https://wa.me/79215774616" target="_blank">WhatsApp</a> |
-    <a href="https://www.instagram.com/manyunya_kol" target="_blank">Instagram</a> |
-    <a href="tel:+79215774616" target="_blank">Телефон</a>
-  </div>
-</section>
-
+    <div class="social">
+      <a href="https://vk.com/maria_masyana" target="_blank">VK</a> |
+      <a href="https://telegram.me/Maria_Masyana" target="_blank">Telegram</a> |
+      <a href="https://wa.me/79215774616" target="_blank">WhatsApp</a> |
+      <a href="https://www.instagram.com/manyunya_kol" target="_blank">Instagram</a> |
+      <a href="tel:+79215774616" target="_blank">Телефон</a>
+    </div>
+  </section>
+</main>
 <footer>
   <p>© 2025 Мария Колесник — подолог</p>
 </footer>
-
-<!-- Подключение JS -->
 <script src="script.js"></script>
 </body>
 </html>
