@@ -14,7 +14,7 @@ const products = [
     tag: 'Восстановление',
     price: '15 мл',
     note: 'Наносите на сухие участки и трещины ежедневно.',
-    image: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=60',
+    image: 'https://optim.tildacdn.com/stor6165-3061-4335-b034-373537386362/-/format/webp/43774607.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-843834728042-biovosk-regeneriruyuschii'
   },
   {
@@ -23,7 +23,7 @@ const products = [
     tag: 'Смягчение',
     price: '150 мл',
     note: 'Курсом 2–3 недели, наносить на локальные зоны.',
-    image: 'https://images.unsplash.com/photo-1600180758890-6b94519a8ba1?auto=format&fit=crop&w=900&q=60',
+    image: 'https://optim.tildacdn.com/stor3732-6164-4737-b831-336437303663/-/format/webp/36018151.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-329772559592-krem-ot-mozolei-i-natoptishei-150-ml'
   },
   {
@@ -32,7 +32,7 @@ const products = [
     tag: 'Антисептика',
     price: '75 мл',
     note: 'Ночной уход для глубокого восстановления.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=60',
+    image: 'https://optim.tildacdn.com/stor6663-6137-4562-b038-623263653338/-/format/webp/87785173.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-495224069042-krem-ot-treschin-s-monardoi'
   },
   {
@@ -41,7 +41,7 @@ const products = [
     tag: 'Онихолизис',
     price: '30 мл',
     note: 'Используйте под окклюзию для усиления эффекта.',
-    image: 'https://images.unsplash.com/photo-1506617420156-8e4536971650?auto=format&fit=crop&w=900&q=60',
+    image: 'https://optim.tildacdn.com/stor6537-3539-4633-b039-633932356164/-/format/webp/22085799.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-559624973012-sivorotka-sos-oniholizis-dlya-nogtei-30'
   },
   {
@@ -50,7 +50,7 @@ const products = [
     tag: 'Восстановление ногтей',
     price: '15 мл',
     note: 'Наносить ежедневно на ногтевое ложе и свободный край.',
-    image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=60',
+    image: 'https://optim.tildacdn.com/stor3939-6665-4565-b939-646333633233/-/format/webp/90066440.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-929825269612-maslo-sos-oniholizis-dlya-vosstanovleniy'
   },
   {
@@ -59,7 +59,7 @@ const products = [
     tag: 'Контроль потоотделения',
     price: '150 мл',
     note: 'Легкая текстура, быстро впитывается.',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=60',
+    image: 'https://static.tildacdn.com/stor3630-3936-4431-b139-343236313964/51286988.jpg',
     link: 'https://pollylook.com/catalog/tproduct/818258500-821454515222-loson-pri-gipergidroze-150-ml'
   },
   {
@@ -68,7 +68,7 @@ const products = [
     tag: 'Регенерация',
     price: '15 мл',
     note: 'Подходит для курсового применения между приемами.',
-    image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=60',
+    image: 'https://optim.tildacdn.com/stor6662-3264-4631-b236-616664373433/-/format/webp/26825011.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-823285380402-sivorotka-vosstanavlivayuschaya-terapevt'
   },
   {
@@ -77,7 +77,7 @@ const products = [
     tag: 'Антигрибковый уход',
     price: '15 мл',
     note: 'Идеален для профилактики после обработки.',
-    image: 'https://images.unsplash.com/photo-1506617420156-8e4536971650?auto=format&fit=crop&w=800&q=60',
+    image: 'https://optim.tildacdn.com/stor3563-3539-4363-b231-363664396433/-/format/webp/14864410.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-238454690072-biovosk-terapevticheskii-s-protivogribko'
   },
   {
@@ -86,7 +86,7 @@ const products = [
     tag: 'Антисептика',
     price: '30 мл',
     note: 'Для ухода между процедурами у подолога.',
-    image: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=60',
+    image: 'https://static.tildacdn.com/stor3931-3330-4132-a262-656232386535/53037201.jpg',
     link: 'https://pollylook.com/catalog/tproduct/818258500-844988151422-loson-terapevticheskii-s-protivogribkovi'
   },
   {
@@ -95,7 +95,7 @@ const products = [
     tag: 'Успокаивающий уход',
     price: '75 мл',
     note: 'Можно использовать ежедневно после душа.',
-    image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=700&q=60',
+    image: 'https://optim.tildacdn.com/stor3064-6365-4239-b966-623862633730/-/format/webp/53947178.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-540519584802-terapevticheskii-krem-dlya-problemnoi-ko'
   },
   {
@@ -104,7 +104,7 @@ const products = [
     tag: 'Укрепление',
     price: '15 мл',
     note: 'Наносить на чистые ногти курсом 4–6 недель.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=60',
+    image: 'https://optim.tildacdn.com/stor3838-3866-4664-b636-666533346238/-/format/webp/92026394.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-545745307272-sivorotka-dlya-ukrepleniya-povrezhdennih'
   },
   {
@@ -113,7 +113,7 @@ const products = [
     tag: 'Питание и защита',
     price: '15 мл',
     note: 'Локально на чувствительные зоны или кутикулу.',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=60',
+    image: 'https://optim.tildacdn.com/stor3737-3530-4639-b931-656436306335/-/format/webp/52774019.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-386697822432-loson-propolisoft-kompleks-15-ml'
   },
   {
@@ -122,7 +122,7 @@ const products = [
     tag: 'Интенсивный уход',
     price: '15 мл',
     note: 'Используйте точечно до 2 раз в день.',
-    image: 'https://images.unsplash.com/photo-1506617420156-8e4536971650?auto=format&fit=crop&w=700&q=60',
+    image: 'https://optim.tildacdn.com/stor3963-6136-4233-a537-353364373665/-/format/webp/88013902.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-150897344792-loson-propolistrong-intensiv-15-ml'
   },
   {
@@ -131,7 +131,7 @@ const products = [
     tag: 'Защита кожи',
     price: '15 мл',
     note: 'Наносите на ночь на проблемные участки.',
-    image: 'https://images.unsplash.com/photo-1506617420156-8e4536971650?auto=format&fit=crop&w=820&q=60',
+    image: 'https://optim.tildacdn.com/stor3435-3338-4131-b233-346338373162/-/format/webp/13525692.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-625132833562-biovosk-ot-treschin-i-shelushenii-bezupr'
   },
   {
@@ -140,7 +140,7 @@ const products = [
     tag: 'Питание',
     price: '120 мл',
     note: 'Подходит для ежедневного ухода и массажа.',
-    image: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=820&q=60',
+    image: 'https://optim.tildacdn.com/stor3630-3166-4631-a363-303762303039/-/format/webp/73492690.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-203894539272-krem-batter-ekspert-uhod-s-maslom-shi'
   },
   {
@@ -149,7 +149,7 @@ const products = [
     tag: 'Барьерная защита',
     price: '150 мл',
     note: 'Идеален для завершения домашнего ухода.',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=820&q=60',
+    image: 'https://optim.tildacdn.com/stor3938-6134-4365-a362-643436373036/-/format/webp/75662117.jpg.webp',
     link: 'https://pollylook.com/catalog/tproduct/818258500-766442007252-loson-zaschischayuschiy-dlya-kozhi-nog-s'
   }
 ];
