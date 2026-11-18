@@ -13,13 +13,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="podology.css?v=studio1">
+  <link rel="stylesheet" href="orbit.css?v=1">
   <script src="podology.js?v=studio1" defer></script>
+  <script type="module" src="orbit.js?v=1"></script>
 </head>
-<body>
+<body class="orbit-page">
   <a class="skip-link" href="#content">Перейти к содержанию</a>
   <header class="masthead">
     <div class="shell masthead-inner">
-      <a class="wordmark" href="#top">Мария Колесник<span>Кабинет подолога</span></a>
+      <a class="wordmark" href="#exam">Мария Колесник<span>Кабинет подолога</span></a>
       <nav class="desktop-nav" aria-label="Основное меню">
         <a href="#services">Услуги и цены</a>
         <a href="#home-care">Домашний уход</a>
@@ -39,70 +41,43 @@
     </div>
   </header>
   <main id="content">
-    <section class="visit" id="top" aria-label="Этапы ухода за стопами">
-      <span class="story-anchor" id="visit" aria-hidden="true"></span>
-      <div class="visit-frame">
-        <div class="visit-film studio-media" aria-hidden="true">
-          <video muted playsinline preload="none" width="1152" height="768"
-            data-wide="images/visit/studio-wide.mp4" data-mobile="images/visit/studio-mobile.mp4"></video>
+    <div class="orbit-layout" id="top">
+      <div class="orbit-gallery" aria-label="Круговой обзор стоп">
+        <div class="orbit-art" aria-hidden="true">
+          <img class="orbit-poster" src="images/orbit/opening.jpg" alt="" width="940" height="940" fetchpriority="high">
+          <div class="orbit-angles"></div>
+          <canvas class="orbit-canvas"></canvas>
         </div>
-        <article class="scene hero" id="exam">
-          <div class="scene-image studio-media" aria-hidden="true"><picture>
-              <source media="(max-width: 800px)" srcset="images/visit/mobile-opening.jpg">
-              <img src="images/visit/wide-opening.jpg" width="1152" height="768" alt="" fetchpriority="high" decoding="async">
-            </picture></div>
-          <div class="shell scene-inner">
-            <div class="scene-copy">
-              <p class="eyebrow">Подолог во Всеволожске</p>
-              <h1><span>Забота</span> <em>о стопах</em></h1>
-              <p class="scene-description">Подологический педикюр и уход за ногтями у Марии Колесник.</p>
-              <div class="actions"><a class="pill pill-dark" href="#booking">Записаться на приём</a><a class="text-link" href="#services">Услуги и цены</a></div>
-            </div>
+        <nav class="orbit-index" aria-label="Разделы на орбите">
+          <span class="orbit-current" aria-hidden="true">До приёма</span>
+          <div class="orbit-markers">
+            <a href="#exam" aria-label="До приёма" aria-current="step"></a>
+            <a href="#services" aria-label="Услуги и цены"></a>
+            <a href="#home-care" aria-label="Домашний уход"></a>
+            <a href="#about" aria-label="О Марии"></a>
+            <a href="#booking" aria-label="Запись"></a>
           </div>
-        </article>
-        <article class="scene scene-treatment" id="treatment">
-          <div class="scene-image studio-media" aria-hidden="true"><picture>
-              <source media="(max-width: 800px)" srcset="images/visit/mobile-procedure.jpg">
-              <img src="images/visit/wide-procedure.jpg" width="1152" height="768" alt="" loading="lazy" decoding="async">
-            </picture></div>
-          <div class="shell scene-inner">
-            <div class="scene-copy">
-              <p class="eyebrow">На приёме</p>
-              <h2><span>Бережная</span> <em>обработка</em></h2>
-              <p class="scene-description">Мария осмотрит кожу и ногти, подберёт процедуру и объяснит каждый шаг.</p>
-              <div class="actions"><a class="text-link" href="#services">Посмотреть услуги</a></div>
-            </div>
-          </div>
-        </article>
-        <article class="scene scene-care" id="care">
-          <div class="scene-image studio-media" aria-hidden="true"><picture>
-              <source media="(max-width: 800px)" srcset="images/visit/mobile-finish.jpg">
-              <img src="images/visit/wide-finish.jpg" width="1152" height="768" alt="" loading="lazy" decoding="async">
-            </picture></div>
-          <div class="shell scene-inner">
-            <div class="scene-copy">
-              <p class="eyebrow">После приёма</p>
-              <h2><span>Домашний</span> <em>уход</em></h2>
-              <p class="scene-description">Как наносить крем и ухаживать за стопами между визитами — Мария покажет на приёме.</p>
-              <div class="actions"><a class="text-link" href="#home-care">Подробнее об уходе</a></div>
-            </div>
-          </div>
-        </article>
-        <nav class="scene-nav shell" aria-label="Этапы приёма">
-          <a href="#exam">До приёма</a>
-          <a href="#treatment">Процедура</a>
-          <a href="#care">Домашний уход</a>
+          <span class="orbit-degrees" aria-hidden="true">0°</span>
         </nav>
       </div>
-    </section>
-    <section class="services band" id="services">
-      <div class="shell split">
-        <div class="section-intro">
-          <h2>Услуги<br> <em>и цены</em></h2>
-          <p>Выберите раздел, чтобы посмотреть цены и состав процедуры.</p>
-          <a class="pill pill-dark" href="#booking">Записаться на приём</a>
-        </div>
-        <div class="price-list">
+      <div class="orbit-content">
+        <section class="orbit-chapter orbit-opening" id="exam" data-angle="0">
+          <span id="visit" class="legacy-anchor"></span>
+          <div class="chapter-inner">
+            <p class="orb-kicker">Подолог во Всеволожске</p>
+            <h1>Забота<br><em>о стопах</em></h1>
+            <p class="orb-lead">Подологический педикюр и уход за ногтями у Марии Колесник.</p>
+            <div class="orb-actions"><a class="pill pill-light" href="#booking">Записаться на приём</a><a class="text-link" href="#services">Услуги и цены</a></div>
+            <a class="orbit-scroll" href="#services"><i aria-hidden="true"></i>Прокрутите, чтобы осмотреть стопы</a>
+          </div>
+        </section>
+        <section class="orbit-chapter orbit-prices" id="services" data-angle="108">
+          <span id="treatment" class="legacy-anchor"></span>
+          <div class="chapter-inner">
+            <p class="orb-kicker">На приёме</p>
+            <h2>Услуги <em>и цены</em></h2>
+            <div class="photo-note"><img src="images/visit/wide-procedure.jpg" width="1152" height="768" alt="Аппаратная обработка пятки" loading="lazy"><p>Мария осмотрит кожу и ногти, подберёт процедуру и объяснит каждый шаг.</p></div>
+            <div class="price-list">
           <details class="price-group" open><summary><span>Педикюр</span><small>2 500–3 500 ₽</small></summary>
           <details class="service"><summary><span>Профилактический аппаратный педикюр</span><strong>3 000 ₽</strong></summary><p>Аппаратная обработка десяти ногтевых пластин и кожи стоп.</p></details>
           <details class="service"><summary><span>Медицинский аппаратный педикюр</span><strong>3 500 ₽</strong></summary><p>Обработка ногтей и кожи стоп. Объём работы обсуждается на приёме.</p></details>
@@ -125,51 +100,40 @@
           <details class="service"><summary><span>Нитиноловая нить на маленьком пальце</span><strong>1 500 ₽</strong></summary><p>Коррекция ногтевой пластины с помощью нитиноловой нити.</p></details>
           </details>
         </div>
-      </div>
-    </section>
-
-    <section class="home-care band" id="home-care">
-      <div class="shell care-layout">
-        <div class="section-intro">
-          <p class="eyebrow">Между визитами</p>
-          <h2>Домашний<br> <em>уход</em></h2>
-          <p>Мария поможет подобрать средства Pollylook для стоп и ногтей и покажет, как ими пользоваться.</p>
-          <a class="pill pill-dark" href="polylook.html">Посмотреть средства</a>
-        </div>
-        <figure class="product-figure">
-          <a href="polylook.html" aria-label="Посмотреть средства Pollylook"><img src="https://static.tildacdn.com/stor3164-3632-4437-b537-313936663434/95161579.jpg" width="600" height="600" alt="Интенсивно увлажняющий крем для стоп Pollylook" loading="lazy" decoding="async"></a>
-          <figcaption>Pollylook <span>Крем для стоп</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="about band" id="about">
-      <div class="shell about-grid">
-        <figure><img src="maria.jpg" width="384" height="512" alt="Мария Колесник" loading="lazy"></figure>
-        <div class="about-copy">
-          <p class="eyebrow">О специалисте</p>
-          <h2>Мария<br><em>Колесник</em></h2>
-          <p>Дипломированный подолог с медицинским образованием по специальности «Сестринское дело».</p>
-          <div class="experience"><strong>24 года</strong><span>практического опыта</span></div>
-          <p>Инструменты проходят трёхэтапную стерилизацию. Уход подбираю индивидуально по состоянию кожи стоп и ногтей.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="booking band" id="booking">
-      <span class="legacy-anchor" id="contact" aria-hidden="true"></span>
-      <div class="shell split booking-grid">
-        <div class="section-intro">
-          <h2>Запись<br><em>на приём</em></h2>
-          <p>Напишите Марии, чтобы согласовать день и время визита.</p>
-          <div class="contact-links">
+          </div>
+        </section>
+        <section class="orbit-chapter" id="home-care" data-angle="204">
+          <span id="care" class="legacy-anchor"></span>
+          <div class="chapter-inner">
+            <p class="orb-kicker">После приёма</p>
+            <h2>Домашний<br><em>уход</em></h2>
+            <figure class="care-image"><img src="images/visit/wide-finish.jpg" width="1152" height="768" alt="Нанесение крема на кожу пятки" loading="lazy"></figure>
+            <p class="orb-lead">Мария покажет, как наносить крем и ухаживать за стопами между визитами.</p>
+            <a class="product-line" href="polylook.html"><span class="product-photo"><img src="https://static.tildacdn.com/stor3164-3632-4437-b537-313936663434/95161579.jpg" width="600" height="600" alt="" loading="lazy"></span><span><strong>Pollylook</strong><small>Посмотреть средства для ухода</small></span></a>
+          </div>
+        </section>
+        <section class="orbit-chapter" id="about" data-angle="283">
+          <div class="chapter-inner">
+            <p class="orb-kicker">О специалисте</p>
+            <h2>Мария<br><em>Колесник</em></h2>
+            <div class="specialist-note"><img src="maria.jpg" width="384" height="512" alt="Мария Колесник" loading="lazy"><div><strong>24 года</strong><span>практического опыта</span></div></div>
+            <p class="orb-lead">Дипломированный подолог с медицинским образованием по специальности «Сестринское дело».</p>
+            <p>Инструменты проходят трёхэтапную стерилизацию. Уход подбираю индивидуально по состоянию кожи стоп и ногтей.</p>
+          </div>
+        </section>
+        <section class="orbit-chapter orbit-booking" id="booking" data-angle="360">
+          <span id="contact" class="legacy-anchor"></span>
+          <div class="chapter-inner">
+            <p class="orb-kicker">Кабинет во Всеволожске</p>
+            <h2>Запись<br><em>на приём</em></h2>
+            <p class="orb-lead">Напишите Марии, чтобы согласовать день и время визита.</p>
+            <div class="contact-links">
             <a class="pill pill-light" href="https://max.ru/u/f9LHodD0cOIDWlmFbb30WPRnYsYARx5hOiN-JXVBSh670RS9WmrFy0OLJL8">Записаться в MAX</a>
             <a class="pill pill-outline" href="https://t.me/Maria_Masyana">Telegram</a>
             <a class="pill pill-outline" href="https://wa.me/79215774616">WhatsApp</a>
           </div>
           <a class="text-link phone" href="tel:+79215774616">+7 921 577-46-16</a>
-        </div>
-        <div class="location" id="location">
+            <div class="location" id="location">
           <span class="legacy-anchor" id="schedule" aria-hidden="true"></span>
           <h3>Где и когда</h3>
           <div class="location-line">
@@ -190,8 +154,10 @@
           </div>
           <a class="text-link route" href="https://yandex.ru/maps/?mode=routes&amp;rtext=~60.018839%2C30.647553&amp;rtt=auto">Построить маршрут</a>
         </div>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </main>
   <footer>
     <div class="shell foot-inner">
