@@ -4,7 +4,7 @@ const header = document.querySelector(".masthead");
 const scenes = [...visit.querySelectorAll(".scene")];
 const steps = [...visit.querySelectorAll(".scene-nav a")];
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
-const storyFits = matchMedia("(min-width: 801px) and (min-height: 580px), (max-width: 800px) and (min-height: 640px)");
+const storyFits = matchMedia("(min-width: 801px) and (min-height: 580px), (max-width: 800px) and (min-height: 560px)");
 
 // The intervals include a brief rest between cuts so that each scene can be read.
 const cuts = [
@@ -12,6 +12,10 @@ const cuts = [
   { start: 0.53, end: 0.865 }
 ];
 const stops = [0, cuts[0].end, cuts[1].end];
+const palette = [[245, 239, 229], [22, 41, 34], [213, 222, 201]];
+const filmCanvas = stage.querySelector("canvas");
+let film = null;
+let loadingFilm = false;
 let frame = 0;
 let activeScene = -1;
 
@@ -60,10 +64,21 @@ function renderStory() {
   const departure = ramp(time, 0.09, 0.66);
   const earlyDrift = interval ? clamp((progress - stops[current]) / Math.max(0.01, interval.start - stops[current])) : 0;
 
+  const moving = film && visit.classList.contains("has-film");
+
   scenes.forEach((scene, index) => {
     const next = index === arriving;
     scene.classList.toggle("is-in-frame", index === current || next);
-    if (next) {
+    if (moving && (next || index === current)) {
+      const alpha = next ? ramp(time, 0.56, 0.84) : 1 - ramp(time, 0.2, 0.46);
+      const detail = next ? ramp(time, 0.65, 0.91) : 1 - ramp(time, 0.11, 0.40);
+      const shift = next ? 1 - alpha : alpha - 1;
+      placeScene(scene, {
+        cut: 0, angle: 0, photoY: 0, photoScale: 1,
+        titleY: shift * 22, secondY: shift * 31, titleAlpha: alpha,
+        detail, detailY: shift * 18, copyY: 0
+      });
+    } else if (next) {
       const firstLine = ramp(time, 0.31, 0.88);
       const secondLine = ramp(time, 0.40, 0.97);
       const detail = ramp(time, 0.54, 1);
@@ -87,6 +102,14 @@ function renderStory() {
   stage.style.setProperty("--light-y", `${100 * (1 - wipe)}%`);
   stage.style.setProperty("--light-opacity", sweep * 0.32);
   stage.style.setProperty("--story-progress", `${progress * 100}%`);
+  if (moving) {
+    const next = Math.min(current + 1, scenes.length - 1);
+    const colorMix = ramp(time, 0.34, 0.67);
+    const color = palette[current].map((channel, i) => Math.round(channel + (palette[next][i] - channel) * colorMix));
+    stage.style.setProperty("--film-bg", `rgb(${color.join(", ")})`);
+    const onScreen = track.bottom > header.offsetHeight && track.top < window.innerHeight;
+    film.update([current, next, time, clamp((progress - stops[current]) * 3)], onScreen);
+  }
   setActiveScene(time >= 0.5 ? arriving : current);
 }
 
@@ -109,12 +132,32 @@ function restoreScene() {
   if (index >= 0) goToScene(index, "instant");
 }
 
+async function loadFilm() {
+  if (film || loadingFilm || !window.openVisitFilm) return;
+  loadingFilm = true;
+  film = await window.openVisitFilm(filmCanvas, scenes.map(scene => scene.querySelector("img")));
+  loadingFilm = false;
+  if (film && visit.classList.contains("is-sticky")) {
+    visit.classList.add("has-film");
+    renderStory();
+  }
+}
+
+filmCanvas.addEventListener("webglcontextlost", () => {
+  film = null;
+  visit.classList.remove("has-film");
+  renderStory();
+});
+
 function updateLayout() {
   const cinematic = storyFits.matches && !reduceMotion.matches;
   visit.classList.toggle("is-sticky", cinematic);
+  visit.classList.toggle("has-film", Boolean(cinematic && film));
   if (cinematic) {
     renderStory();
+    loadFilm();
   } else {
+    film?.update([0, 0, 0, 0], false);
     setActiveScene(-1);
     scenes.forEach(scene => {
       scene.classList.remove("is-in-frame");

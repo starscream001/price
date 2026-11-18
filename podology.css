@@ -97,7 +97,7 @@ button, a, summary { -webkit-tap-highlight-color: transparent; }
 .text-link { font-weight: 800; text-underline-offset: .32em; }
 .text-link:hover { text-decoration-thickness: 2px; }
 .scene-copy > .text-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 10px; }
-.scene-nav, .story-light { display: none; }
+.scene-nav, .story-light, .visit-film { display: none; }
 .home-care { background: #d5dec9; }
 .home-care .split { align-items: center; }
 .home-care .section-intro > p { margin-top: 0; max-width: 40ch; }
@@ -304,6 +304,41 @@ footer { background: var(--dark); color: var(--cream); border-top: 1px solid #ff
   .is-sticky .story-light { inset-inline: 0; }
   .is-sticky .scene-nav { bottom: 14px; }
   .is-sticky .scene-nav a { padding-inline: clamp(9px, 3vw, 14px); font-size: .8125rem; }
+}
+/* The moving image is shared by the three text scenes. */
+.visit.has-film .visit-frame { background: var(--film-bg, var(--paper)); }
+.visit.has-film .scene {
+  z-index: 1;
+  background: transparent;
+  clip-path: none;
+}
+.visit.has-film .scene-image { visibility: hidden; }
+.visit.has-film .story-light { display: none; }
+.visit.has-film .visit-film {
+  display: block;
+  position: absolute;
+  inset: 0 0 0 29%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.visit-film canvas { display: block; width: 100%; height: 100%; }
+.visit-film::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--film-bg, var(--paper)) 4%, transparent 43%);
+}
+@media (max-width: 800px) {
+  .visit.has-film .visit-film { inset: 0 0 auto; height: 67%; }
+  .visit-film::after {
+    background: linear-gradient(0deg, var(--film-bg, var(--paper)), transparent 44%);
+  }
+}
+@media (max-width: 800px) and (max-height: 639px) {
+  .is-sticky .scene-inner { padding-bottom: 66px; }
+  .is-sticky :is(h1, h2) { font-size: clamp(1.95rem, 8vw, 3rem); }
+  .is-sticky .scene-copy > p:not(.eyebrow) { line-height: 1.35; }
+  .is-sticky .scene-nav { bottom: 9px; }
 }
 @media (max-width: 520px) {
   .about-grid { grid-template-columns: 1fr; }
