@@ -4,6 +4,8 @@ const header = document.querySelector(".masthead");
 const scenes = [...visit.querySelectorAll(".scene")];
 const steps = [...visit.querySelectorAll(".scene-nav a")];
 const stickyLayout = matchMedia("(min-width: 901px) and (min-height: 580px) and (prefers-reduced-motion: no-preference)");
+const mobileMotion = matchMedia("(max-width: 800px) and (prefers-reduced-motion: no-preference)");
+const mobileImages = scenes.slice(1).map(scene => scene.querySelector(".scene-image"));
 let frame = 0;
 let activeScene = -1;
 
@@ -18,9 +20,6 @@ function setActiveScene(current) {
 }
 
 function renderStory() {
-  frame = 0;
-  if (!stickyLayout.matches) return;
-
   const track = visit.getBoundingClientRect();
   const distance = Math.max(1, track.height - stage.offsetHeight);
   const progress = Math.min(1, Math.max(0, (header.offsetHeight - track.top) / distance));
@@ -45,18 +44,41 @@ function renderStory() {
   setActiveScene(reveal >= 0.5 ? incoming : outgoing);
 }
 
+function renderMobileStory() {
+  const viewport = window.innerHeight;
+  mobileImages.forEach(image => {
+    const bounds = image.getBoundingClientRect();
+    const distance = Math.min(bounds.height * 0.78, viewport * 0.46);
+    const progress = Math.min(1, Math.max(0, (viewport * 0.98 - bounds.top) / distance));
+    const reveal = progress * progress * (3 - 2 * progress);
+    image.style.setProperty("--mobile-mask", `${(1 - reveal) * 56}%`);
+    image.style.setProperty("--mobile-shift", `${(1 - reveal) * 16}px`);
+    image.style.setProperty("--mobile-scale", String(1 + (1 - reveal) * 0.11));
+    image.style.setProperty("--mobile-light-top", `${34 + reveal * 68}%`);
+    image.style.setProperty("--mobile-light-opacity", String(Math.sin(Math.PI * reveal) * 0.78));
+  });
+}
+
+function renderFrame() {
+  frame = 0;
+  if (stickyLayout.matches) renderStory();
+  else if (mobileMotion.matches) renderMobileStory();
+}
+
 function queueRender() {
-  if (!frame && stickyLayout.matches) frame = requestAnimationFrame(renderStory);
+  if (!frame && (stickyLayout.matches || mobileMotion.matches)) {
+    frame = requestAnimationFrame(renderFrame);
+  }
 }
 
 function updateLayout() {
   visit.classList.toggle("is-sticky", stickyLayout.matches);
-  if (stickyLayout.matches) {
-    renderStory();
-  } else {
+  if (!stickyLayout.matches) {
     setActiveScene(-1);
     scenes.forEach(scene => scene.removeAttribute("style"));
   }
+  if (!mobileMotion.matches) mobileImages.forEach(image => image.removeAttribute("style"));
+  renderFrame();
 }
 
 function goToScene(index, behavior) {
@@ -83,18 +105,8 @@ steps.forEach((link, index) => {
   });
 });
 
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver((entries, currentObserver) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting || stickyLayout.matches) return;
-      entry.target.classList.add("is-visible");
-      currentObserver.unobserve(entry.target);
-    });
-  }, { threshold: 0.25 });
-  scenes.slice(1).forEach(scene => observer.observe(scene));
-}
-
 stickyLayout.addEventListener("change", updateLayout);
+mobileMotion.addEventListener("change", updateLayout);
 window.addEventListener("scroll", queueRender, { passive: true });
 window.addEventListener("resize", queueRender, { passive: true });
 window.addEventListener("hashchange", restoreScene);
