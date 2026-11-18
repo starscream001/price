@@ -3,11 +3,21 @@ const stage = visit.querySelector(".visit-frame");
 const header = document.querySelector(".masthead");
 const scenes = [...visit.querySelectorAll(".scene")];
 const steps = [...visit.querySelectorAll(".scene-nav a")];
-const stickyLayout = matchMedia("(min-width: 901px) and (min-height: 580px) and (prefers-reduced-motion: no-preference)");
-const mobileMotion = matchMedia("(max-width: 800px) and (prefers-reduced-motion: no-preference)");
-const mobileImages = scenes.slice(1).map(scene => scene.querySelector(".scene-image"));
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const storyFits = matchMedia("(min-width: 801px) and (min-height: 580px), (max-width: 800px) and (min-height: 640px)");
+
+// The intervals include a brief rest between cuts so that each scene can be read.
+const cuts = [
+  { start: 0.105, end: 0.44 },
+  { start: 0.53, end: 0.865 }
+];
+const stops = [0, cuts[0].end, cuts[1].end];
 let frame = 0;
 let activeScene = -1;
+
+const clamp = value => Math.min(1, Math.max(0, value));
+const smooth = value => value * value * (3 - 2 * value);
+const ramp = (value, from, to) => smooth(clamp((value - from) / (to - from)));
 
 function setActiveScene(current) {
   if (current === activeScene) return;
@@ -19,94 +29,111 @@ function setActiveScene(current) {
   });
 }
 
+function placeScene(scene, { cut, angle, photoY, photoScale, titleY, secondY, titleAlpha, detail, detailY, copyY }) {
+  const style = scene.style;
+  style.setProperty("--cut", `${cut}%`);
+  style.setProperty("--angle", `${angle}%`);
+  style.setProperty("--photo-y", `${photoY}%`);
+  style.setProperty("--photo-scale", photoScale);
+  style.setProperty("--title-y", `${titleY}%`);
+  style.setProperty("--title-second-y", `${secondY}%`);
+  style.setProperty("--title-alpha", titleAlpha);
+  style.setProperty("--detail-alpha", detail);
+  style.setProperty("--detail-y", `${detailY}px`);
+  style.setProperty("--copy-y", `${copyY}px`);
+}
+
 function renderStory() {
+  frame = 0;
+  if (!visit.classList.contains("is-sticky")) return;
+
   const track = visit.getBoundingClientRect();
   const distance = Math.max(1, track.height - stage.offsetHeight);
-  const progress = Math.min(1, Math.max(0, (header.offsetHeight - track.top) / distance));
-  const phase = progress * scenes.length;
-  const outgoing = Math.min(scenes.length - 1, Math.floor(phase));
-  const incoming = Math.min(scenes.length - 1, outgoing + 1);
-  const blend = outgoing === incoming ? 0 : Math.max(0, (phase - outgoing - 0.30) / 0.70);
-  const reveal = blend * blend * (3 - 2 * blend);
+  const progress = clamp((header.offsetHeight - track.top) / distance);
+  const current = cuts.filter(cut => progress >= cut.end).length;
+  const interval = cuts[current];
+  const time = interval ? clamp((progress - interval.start) / (interval.end - interval.start)) : 0;
+  const wipe = ramp(time, 0, 1);
+  const sweep = Math.sin(Math.PI * wipe);
+  const inCut = time > 0;
+  const arriving = inCut ? current + 1 : -1;
+  const departure = ramp(time, 0.09, 0.66);
+  const earlyDrift = interval ? clamp((progress - stops[current]) / Math.max(0.01, interval.start - stops[current])) : 0;
 
   scenes.forEach((scene, index) => {
-    const isIncoming = index === incoming && index !== outgoing;
-    scene.style.opacity = index === outgoing ? 1 : isIncoming ? Math.min(1, reveal * 1.3) : 0;
-    scene.style.setProperty("--image-reveal", isIncoming ? `${100 * (1 - reveal)}%` : "0%");
-    scene.style.setProperty("--image-shift", `${isIncoming ? (1 - reveal) * 36 : reveal * -26}px`);
-    scene.style.setProperty("--image-scale", String(isIncoming ? 1.07 + (1 - reveal) * 0.14 : 1.07 + reveal * 0.10));
-    scene.style.setProperty("--copy-opacity", String(isIncoming ? Math.max(0, (reveal - 0.35) / 0.65) : Math.max(0, 1 - reveal * 2)));
-    scene.style.setProperty("--copy-shift", `${isIncoming ? (1 - reveal) * 38 : reveal * -36}px`);
+    const next = index === arriving;
+    scene.classList.toggle("is-in-frame", index === current || next);
+    if (next) {
+      const firstLine = ramp(time, 0.31, 0.88);
+      const secondLine = ramp(time, 0.40, 0.97);
+      const detail = ramp(time, 0.54, 1);
+      placeScene(scene, {
+        cut: 100 * (1 - wipe), angle: sweep * 7,
+        photoY: 10 * (1 - wipe), photoScale: 1.05 + 0.17 * (1 - wipe),
+        titleY: 108 * (1 - firstLine), secondY: 108 * (1 - secondLine),
+        titleAlpha: ramp(time, 0.30, 0.61), detail, detailY: 26 * (1 - detail), copyY: 14 * (1 - wipe)
+      });
+    } else if (index === current) {
+      placeScene(scene, {
+        cut: 0, angle: 0,
+        photoY: -6 * wipe, photoScale: 1.05 + 0.025 * earlyDrift + 0.13 * wipe,
+        titleY: -103 * departure, secondY: -106 * ramp(time, 0.17, 0.73),
+        titleAlpha: 1 - ramp(time, 0.34, 0.73), detail: 1 - ramp(time, 0.04, 0.52),
+        detailY: -22 * departure, copyY: -16 * wipe
+      });
+    }
   });
 
-  stage.style.setProperty("--light-top", `${100 * (1 - reveal)}%`);
-  stage.style.setProperty("--light-opacity", String(Math.sin(Math.PI * reveal) * 0.72));
-  setActiveScene(reveal >= 0.5 ? incoming : outgoing);
-}
-
-function renderMobileStory() {
-  const viewport = window.innerHeight;
-  mobileImages.forEach(image => {
-    const bounds = image.getBoundingClientRect();
-    const distance = Math.min(bounds.height * 0.78, viewport * 0.46);
-    const progress = Math.min(1, Math.max(0, (viewport * 0.98 - bounds.top) / distance));
-    const reveal = progress * progress * (3 - 2 * progress);
-    image.style.setProperty("--mobile-mask", `${(1 - reveal) * 56}%`);
-    image.style.setProperty("--mobile-shift", `${(1 - reveal) * 16}px`);
-    image.style.setProperty("--mobile-scale", String(1 + (1 - reveal) * 0.11));
-    image.style.setProperty("--mobile-light-top", `${34 + reveal * 68}%`);
-    image.style.setProperty("--mobile-light-opacity", String(Math.sin(Math.PI * reveal) * 0.78));
-  });
-}
-
-function renderFrame() {
-  frame = 0;
-  if (stickyLayout.matches) renderStory();
-  else if (mobileMotion.matches) renderMobileStory();
+  stage.style.setProperty("--light-y", `${100 * (1 - wipe)}%`);
+  stage.style.setProperty("--light-opacity", sweep * 0.32);
+  stage.style.setProperty("--story-progress", `${progress * 100}%`);
+  setActiveScene(time >= 0.5 ? arriving : current);
 }
 
 function queueRender() {
-  if (!frame && (stickyLayout.matches || mobileMotion.matches)) {
-    frame = requestAnimationFrame(renderFrame);
-  }
-}
-
-function updateLayout() {
-  visit.classList.toggle("is-sticky", stickyLayout.matches);
-  if (!stickyLayout.matches) {
-    setActiveScene(-1);
-    scenes.forEach(scene => scene.removeAttribute("style"));
-  }
-  if (!mobileMotion.matches) mobileImages.forEach(image => image.removeAttribute("style"));
-  renderFrame();
+  if (!frame && visit.classList.contains("is-sticky")) frame = requestAnimationFrame(renderStory);
 }
 
 function goToScene(index, behavior) {
   const track = visit.getBoundingClientRect();
   const distance = track.height - stage.offsetHeight;
   window.scrollTo({
-    top: window.scrollY + track.top - header.offsetHeight + distance * index / scenes.length + 1,
+    top: window.scrollY + track.top - header.offsetHeight + distance * stops[index] + 1,
     behavior
   });
 }
 
 function restoreScene() {
-  if (!stickyLayout.matches) return;
+  if (!visit.classList.contains("is-sticky")) return;
   const index = scenes.findIndex(scene => `#${scene.id}` === location.hash);
   if (index >= 0) goToScene(index, "instant");
 }
 
+function updateLayout() {
+  const cinematic = storyFits.matches && !reduceMotion.matches;
+  visit.classList.toggle("is-sticky", cinematic);
+  if (cinematic) {
+    renderStory();
+  } else {
+    setActiveScene(-1);
+    scenes.forEach(scene => {
+      scene.classList.remove("is-in-frame");
+      scene.removeAttribute("style");
+    });
+  }
+}
+
 steps.forEach((link, index) => {
   link.addEventListener("click", event => {
-    if (!stickyLayout.matches || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (!visit.classList.contains("is-sticky") || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     if (location.hash !== link.hash) history.pushState(null, "", link.hash);
     goToScene(index, "smooth");
   });
 });
 
-stickyLayout.addEventListener("change", updateLayout);
-mobileMotion.addEventListener("change", updateLayout);
+storyFits.addEventListener("change", updateLayout);
+reduceMotion.addEventListener("change", updateLayout);
 window.addEventListener("scroll", queueRender, { passive: true });
 window.addEventListener("resize", queueRender, { passive: true });
 window.addEventListener("hashchange", restoreScene);
