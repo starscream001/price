@@ -108,7 +108,7 @@ function renderStory() {
     const color = palette[current].map((channel, i) => Math.round(channel + (palette[next][i] - channel) * colorMix));
     stage.style.setProperty("--film-bg", `rgb(${color.join(", ")})`);
     const onScreen = track.bottom > header.offsetHeight && track.top < window.innerHeight;
-    film.update([current, next, time, clamp((progress - stops[current]) * 3)], onScreen);
+    film.update([current, next, time, progress], onScreen);
   }
   setActiveScene(time >= 0.5 ? arriving : current);
 }

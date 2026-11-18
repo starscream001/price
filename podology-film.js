@@ -61,7 +61,7 @@
 
     void main() {
       float blend = smoothstep(0.34, 0.67, take.z);
-      float camera = 1.05 + take.w * 0.055 + 0.009 * sin(clock * 0.64);
+      float camera = 1.05 + sin(take.w * 3.14159) * 0.078 + 0.009 * sin(clock * 0.64);
       vec2 pivot = vec2(0.55, 0.59);
       vec2 p = (uv - pivot) * cover / camera + pivot;
       p.y += portrait * -0.018;
