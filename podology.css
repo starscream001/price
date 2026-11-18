@@ -291,10 +291,10 @@ footer { background: var(--dark); color: var(--cream); border-top: 1px solid #ff
 @media (max-width: 800px) and (prefers-reduced-motion: no-preference) {
   .visit.is-sticky { height: calc((100svh - var(--header)) * 2.95); }
   .is-sticky .scene { display: grid; align-items: end; }
-  .is-sticky .scene-image { position: absolute; inset: 0 0 auto; height: 60%; aspect-ratio: auto; }
+  .is-sticky .scene-image { position: absolute; inset: 0 0 auto; height: 67%; aspect-ratio: auto; }
   .is-sticky .scene-image img { object-position: 50% 56%; }
-  .is-sticky .scene-image::before { height: 37%; }
-  .is-sticky .scene-inner { margin-top: 0; padding-block: 0 76px; }
+  .is-sticky .scene-image::before { z-index: 1; height: 39%; }
+  .is-sticky .scene-inner { margin-top: 0; padding-block: 0 80px; }
   .is-sticky :is(h1, h2) { font-size: clamp(2.22rem, 9vw, 4.2rem); margin-block: .16em .23em; }
   .is-sticky .eyebrow { font-size: .78rem; }
   .is-sticky .scene-copy > p:not(.eyebrow) { line-height: 1.45; }
