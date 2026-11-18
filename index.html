@@ -12,14 +12,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="podology.css?v=10">
-  <script src="podology.js?v=7" defer></script>
+  <link rel="stylesheet" href="podology.css?v=studio1">
+  <script src="podology.js?v=studio1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
   <header class="masthead">
     <div class="shell masthead-inner">
-      <a class="wordmark" href="#top">Мария Колесник<span>Подолог</span></a>
+      <a class="wordmark" href="#top">Мария Колесник<span>Кабинет подолога</span></a>
       <nav class="desktop-nav" aria-label="Основное меню">
         <a href="#services">Услуги и цены</a>
         <a href="#home-care">Домашний уход</a>
@@ -39,99 +39,107 @@
     </div>
   </header>
   <main id="content">
-    <section class="visit" id="top" aria-label="Подолог во Всеволожске и этапы приёма">
+    <section class="visit" id="top" aria-label="Этапы ухода за стопами">
       <span class="story-anchor" id="visit" aria-hidden="true"></span>
       <div class="visit-frame">
-        <div class="visit-film" aria-hidden="true">
-          <video muted playsinline preload="none" width="960" height="540"
-            poster="images/visit/film-overview.jpg" data-src="images/visit/podology-visit.mp4"></video>
+        <div class="visit-film studio-media" aria-hidden="true">
+          <video muted playsinline preload="none" width="1152" height="768"
+            data-wide="images/visit/studio-wide.mp4" data-mobile="images/visit/studio-mobile.mp4"></video>
         </div>
         <article class="scene hero" id="exam">
-          <div class="scene-image" aria-hidden="true">
-            <img src="images/visit/film-overview.jpg" width="960" height="540" alt="" fetchpriority="high" decoding="async">
-          </div>
+          <div class="scene-image studio-media" aria-hidden="true"><picture>
+              <source media="(max-width: 800px)" srcset="images/visit/mobile-opening.jpg">
+              <img src="images/visit/wide-opening.jpg" width="1152" height="768" alt="" fetchpriority="high" decoding="async">
+            </picture></div>
           <div class="shell scene-inner">
             <div class="scene-copy">
               <p class="eyebrow">Подолог во Всеволожске</p>
-              <h1 id="hero-title"><span class="title-line"><span>Забота</span></span> <span class="title-line"><span><em>о стопах</em></span></span></h1>
-              <p>Подологический педикюр и уход за ногтями у Марии Колесник.</p>
-              <div class="actions">
-                <a class="pill pill-dark" href="#booking">Записаться на приём</a>
-                <a class="text-link" href="#services">Услуги и цены</a>
-              </div>
+              <h1><span>Забота</span> <em>о стопах</em></h1>
+              <p class="scene-description">Подологический педикюр и уход за ногтями у Марии Колесник.</p>
+              <div class="actions"><a class="pill pill-dark" href="#booking">Записаться на приём</a><a class="text-link" href="#services">Услуги и цены</a></div>
             </div>
           </div>
         </article>
         <article class="scene scene-treatment" id="treatment">
-          <div class="scene-image" aria-hidden="true">
-            <img src="images/visit/film-treatment.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
-          </div>
+          <div class="scene-image studio-media" aria-hidden="true"><picture>
+              <source media="(max-width: 800px)" srcset="images/visit/mobile-procedure.jpg">
+              <img src="images/visit/wide-procedure.jpg" width="1152" height="768" alt="" loading="lazy" decoding="async">
+            </picture></div>
           <div class="shell scene-inner">
             <div class="scene-copy">
-              <p class="eyebrow">Как проходит приём</p>
-              <h2><span class="title-line"><span>Осмотр и</span></span> <span class="title-line"><span>процедура</span></span></h2>
-              <p>Мария осмотрит стопы и ногти, уточнит, что беспокоит, и подберёт подходящую процедуру.</p>
-              <a class="text-link" href="#services">Посмотреть услуги</a>
+              <p class="eyebrow">На приёме</p>
+              <h2><span>Бережная</span> <em>обработка</em></h2>
+              <p class="scene-description">Мария осмотрит кожу и ногти, подберёт процедуру и объяснит каждый шаг.</p>
+              <div class="actions"><a class="text-link" href="#services">Посмотреть услуги</a></div>
             </div>
           </div>
         </article>
         <article class="scene scene-care" id="care">
-          <div class="scene-image" aria-hidden="true">
-            <img src="images/visit/film-care.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
-          </div>
+          <div class="scene-image studio-media" aria-hidden="true"><picture>
+              <source media="(max-width: 800px)" srcset="images/visit/mobile-finish.jpg">
+              <img src="images/visit/wide-finish.jpg" width="1152" height="768" alt="" loading="lazy" decoding="async">
+            </picture></div>
           <div class="shell scene-inner">
             <div class="scene-copy">
-              <p class="eyebrow">После процедуры</p>
-              <h2><span class="title-line"><span>Домашний</span></span> <span class="title-line"><span>уход</span></span></h2>
-              <p>Мария объяснит, как ухаживать за стопами дома, и при необходимости подберёт средства.</p>
-              <a class="text-link" href="#home-care">Подробнее об уходе</a>
+              <p class="eyebrow">После приёма</p>
+              <h2><span>Домашний</span> <em>уход</em></h2>
+              <p class="scene-description">Как наносить крем и ухаживать за стопами между визитами — Мария покажет на приёме.</p>
+              <div class="actions"><a class="text-link" href="#home-care">Подробнее об уходе</a></div>
             </div>
           </div>
         </article>
-        <nav class="scene-nav" aria-label="Этапы приёма">
+        <nav class="scene-nav shell" aria-label="Этапы приёма">
           <a href="#exam">До приёма</a>
           <a href="#treatment">Процедура</a>
           <a href="#care">Домашний уход</a>
         </nav>
       </div>
     </section>
-
     <section class="services band" id="services">
       <div class="shell split">
         <div class="section-intro">
           <h2>Услуги<br> <em>и цены</em></h2>
-          <p>Нажмите на услугу, чтобы узнать, что входит в процедуру.</p>
+          <p>Выберите раздел, чтобы посмотреть цены и состав процедуры.</p>
           <a class="pill pill-dark" href="#booking">Записаться на приём</a>
         </div>
         <div class="price-list">
-          <h3>Педикюр</h3>
+          <details class="price-group" open><summary><span>Педикюр</span><small>2 500–3 500 ₽</small></summary>
           <details class="service"><summary><span>Профилактический аппаратный педикюр</span><strong>3 000 ₽</strong></summary><p>Аппаратная обработка десяти ногтевых пластин и кожи стоп.</p></details>
           <details class="service"><summary><span>Медицинский аппаратный педикюр</span><strong>3 500 ₽</strong></summary><p>Обработка ногтей и кожи стоп. Объём работы обсуждается на приёме.</p></details>
           <details class="service"><summary><span>Классический педикюр</span><strong>2 500 ₽</strong></summary><p>Обработка стоп и десяти ногтевых пластин.</p></details>
           <details class="service"><summary><span>Комбинированный педикюр</span><strong>3 000 ₽</strong></summary><p>Сочетание аппаратной и классической техники.</p></details>
-          <h3>Уход за ногтями</h3>
+          </details>
+          <details class="price-group"><summary><span>Уход за ногтями</span><small>2 000–3 000 ₽</small></summary>
           <details class="service"><summary><span>Аппаратный педикюр здоровых ногтей</span><strong>2 000 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
           <details class="service"><summary><span>Аппаратная обработка ногтей средней сложности</span><strong>2 500 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
           <details class="service"><summary><span>Аппаратная обработка ногтей высокой сложности</span><strong>3 000 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
-          <h3>Локальная обработка</h3>
+          </details>
+          <details class="price-group"><summary><span>Локальная обработка</span><small>900–2 000 ₽</small></summary>
           <details class="service"><summary><span>Обработка кожи двух стоп</span><strong>1 500 ₽</strong></summary><p>Обработка кожи обеих стоп без патологических изменений.</p></details>
           <details class="service"><summary><span>Обработка кожи с гиперкератозом и трещинами</span><strong>2 000 ₽</strong></summary><p>Обработка кожи стоп без обработки ногтей.</p></details>
           <details class="service"><summary><span>Обработка одной мозоли</span><strong>900 ₽</strong></summary><p>Стержневые, плоские и межпальцевые мозоли.</p></details>
           <details class="service"><summary><span>Обработка вросшего ногтя, 1 зона</span><strong>1 000 ₽</strong></summary><p>Обработка одного края ногтевой пластины.</p></details>
-          <h3>Коррекция ногтей</h3>
+          </details>
+          <details class="price-group"><summary><span>Коррекция ногтей</span><small>1 500–3 000 ₽</small></summary>
           <details class="service"><summary><span>Нитиноловая нить на большом пальце</span><strong>3 000 ₽</strong></summary><p>Коррекция ногтевой пластины с помощью нитиноловой нити.</p></details>
           <details class="service"><summary><span>Нитиноловая нить на маленьком пальце</span><strong>1 500 ₽</strong></summary><p>Коррекция ногтевой пластины с помощью нитиноловой нити.</p></details>
+          </details>
         </div>
       </div>
     </section>
 
     <section class="home-care band" id="home-care">
-      <div class="shell split">
-        <h2>Средства<br><em>Pollylook</em></h2>
+      <div class="shell care-layout">
         <div class="section-intro">
-          <p>Домашний уход между визитами. Мария поможет подобрать средства для кожи стоп и ногтей и объяснит, как их применять.</p>
+          <p class="eyebrow">Между визитами</p>
+          <h2>Домашний<br> <em>уход</em></h2>
+          <p>Мария поможет подобрать средства Pollylook для стоп и ногтей и покажет, как ими пользоваться.</p>
           <a class="pill pill-dark" href="polylook.html">Посмотреть средства</a>
         </div>
+        <figure class="product-figure">
+          <a href="polylook.html" aria-label="Посмотреть средства Pollylook"><img src="https://static.tildacdn.com/stor3164-3632-4437-b537-313936663434/95161579.jpg" width="600" height="600" alt="Интенсивно увлажняющий крем для стоп Pollylook" loading="lazy" decoding="async"></a>
+          <figcaption>Pollylook <span>Крем для стоп</span></figcaption>
+        </figure>
       </div>
     </section>
 
