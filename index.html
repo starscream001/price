@@ -12,9 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="podology.css?v=9">
-  <script src="podology-film.js?v=2" defer></script>
-  <script src="podology.js?v=6" defer></script>
+  <link rel="stylesheet" href="podology.css?v=10">
+  <script src="podology.js?v=7" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -44,13 +43,13 @@
       <span class="story-anchor" id="visit" aria-hidden="true"></span>
       <div class="visit-frame">
         <div class="visit-film" aria-hidden="true">
-          <canvas></canvas>
+          <video muted playsinline preload="none" width="960" height="540"
+            poster="images/visit/film-overview.jpg" data-src="images/visit/podology-visit.mp4"></video>
         </div>
         <article class="scene hero" id="exam">
-          <picture class="scene-image" aria-hidden="true">
-            <source type="image/avif" srcset="images/visit/01-before.avif">
-            <img src="images/visit/01-before.jpg" width="508" height="1024" alt="" fetchpriority="high" decoding="async">
-          </picture>
+          <div class="scene-image" aria-hidden="true">
+            <img src="images/visit/film-overview.jpg" width="960" height="540" alt="" fetchpriority="high" decoding="async">
+          </div>
           <div class="shell scene-inner">
             <div class="scene-copy">
               <p class="eyebrow">Подолог во Всеволожске</p>
@@ -64,10 +63,9 @@
           </div>
         </article>
         <article class="scene scene-treatment" id="treatment">
-          <picture class="scene-image" aria-hidden="true">
-            <source type="image/avif" srcset="images/visit/02-treatment.avif">
-            <img src="images/visit/02-treatment.jpg" width="508" height="1024" alt="" fetchpriority="low" decoding="async">
-          </picture>
+          <div class="scene-image" aria-hidden="true">
+            <img src="images/visit/film-treatment.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
+          </div>
           <div class="shell scene-inner">
             <div class="scene-copy">
               <p class="eyebrow">Как проходит приём</p>
@@ -78,10 +76,9 @@
           </div>
         </article>
         <article class="scene scene-care" id="care">
-          <picture class="scene-image" aria-hidden="true">
-            <source type="image/avif" srcset="images/visit/03-care.avif">
-            <img src="images/visit/03-care.jpg" width="508" height="1024" alt="" fetchpriority="low" decoding="async">
-          </picture>
+          <div class="scene-image" aria-hidden="true">
+            <img src="images/visit/film-care.jpg" width="960" height="540" alt="" loading="lazy" decoding="async">
+          </div>
           <div class="shell scene-inner">
             <div class="scene-copy">
               <p class="eyebrow">После процедуры</p>
@@ -91,7 +88,6 @@
             </div>
           </div>
         </article>
-        <div class="story-light" aria-hidden="true"></div>
         <nav class="scene-nav" aria-label="Этапы приёма">
           <a href="#exam">До приёма</a>
           <a href="#treatment">Процедура</a>

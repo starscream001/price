@@ -97,7 +97,7 @@ button, a, summary { -webkit-tap-highlight-color: transparent; }
 .text-link { font-weight: 800; text-underline-offset: .32em; }
 .text-link:hover { text-decoration-thickness: 2px; }
 .scene-copy > .text-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 10px; }
-.scene-nav, .story-light, .visit-film { display: none; }
+.scene-nav, .visit-film { display: none; }
 .home-care { background: #d5dec9; }
 .home-care .split { align-items: center; }
 .home-care .section-intro > p { margin-top: 0; max-width: 40ch; }
@@ -186,14 +186,17 @@ footer { background: var(--dark); color: var(--cream); border-top: 1px solid #ff
   .split { grid-template-columns: 1fr; }
   .about figure { max-width: 450px; }
 }
-/* Each scroll position sets a cut between two complete frames. */
+/* The video stays in one position while scrolling sets the playback time. */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
-  .visit.is-sticky { height: calc((100svh - var(--header)) * 3.4); }
+  .visit.is-sticky {
+    --stage-height: calc(100svh - var(--header));
+    height: calc(var(--stage-height) * 3.4);
+  }
   .is-sticky .visit-frame {
     position: sticky;
     top: var(--header);
-    height: calc(100svh - var(--header));
+    height: var(--stage-height);
     isolation: isolate;
     overflow: hidden;
     background: var(--paper);
@@ -203,50 +206,13 @@ footer { background: var(--dark); color: var(--cream); border-top: 1px solid #ff
     inset: 0;
     min-height: 0;
     visibility: hidden;
-    clip-path: polygon(
-      0 calc(var(--cut, 0%) + var(--angle, 0%)),
-      100% calc(var(--cut, 0%) - var(--angle, 0%)),
-      100% 100%,
-      0 100%
-    );
+    background: transparent;
+    color: var(--ink);
   }
+  .is-sticky .scene-image { z-index: -1; }
   .is-sticky .scene.is-in-frame { visibility: visible; }
-  .is-sticky .scene-image img {
-    transform: translate3d(0, var(--photo-y, 0%), 0) scale(var(--photo-scale, 1.05));
-    transform-origin: 55% 61%;
-  }
-  .is-sticky .scene-copy { transform: translateY(var(--copy-y, 0px)); }
-  .is-sticky .scene-copy > :not(h1, h2) {
-    opacity: var(--detail-alpha, 1);
-    transform: translateY(var(--detail-y, 0px));
-  }
-  .is-sticky .title-line {
-    display: block;
-    overflow: clip;
-    margin: -.065em -.09em;
-    padding: .065em .09em;
-  }
-  .is-sticky .title-line > span {
-    display: block;
-    opacity: var(--title-alpha, 1);
-    transform: translate3d(0, var(--title-y, 0%), 0);
-  }
-  .is-sticky .title-line:nth-child(2) > span {
-    transform: translate3d(0, var(--title-second-y, 0%), 0);
-  }
-  .is-sticky .story-light {
-    display: block;
-    position: absolute;
-    z-index: 3;
-    top: var(--light-y, 100%);
-    inset-inline: 31% 0;
-    height: 9%;
-    opacity: var(--light-opacity, 0);
-    pointer-events: none;
-    transform: translateY(-50%) rotate(-3deg);
-    background: linear-gradient(transparent, #ffefce99 49%, transparent 82%);
-    mix-blend-mode: screen;
-  }
+  .is-sticky .scene-copy { position: relative; }
+  .is-sticky .title-line { display: block; }
   .is-sticky .scene-nav {
     position: absolute;
     z-index: 4;
@@ -288,56 +254,63 @@ footer { background: var(--dark); color: var(--cream); border-top: 1px solid #ff
     pointer-events: none;
   }
 }
-@media (max-width: 800px) and (prefers-reduced-motion: no-preference) {
-  .visit.is-sticky { height: calc((100svh - var(--header)) * 2.95); }
-  .is-sticky .scene { display: grid; align-items: end; }
-  .is-sticky .scene-image { position: absolute; inset: 0 0 auto; height: 67%; aspect-ratio: auto; }
-  .is-sticky .scene-image img { object-position: 50% 56%; }
-  .is-sticky .scene-image::before { z-index: 1; height: 39%; }
-  .is-sticky .scene-inner { margin-top: 0; padding-block: 0 80px; }
-  .is-sticky :is(h1, h2) { font-size: clamp(2.22rem, 9vw, 4.2rem); margin-block: .16em .23em; }
+/* Contain the approved framing at every width, including the incoming hands. */
+.is-sticky :is(.visit-film, .scene-image) {
+  position: absolute;
+  inset: 50% 0 auto auto;
+  width: min(71%, calc(var(--stage-height) * 1.78));
+  height: auto;
+  aspect-ratio: 16 / 9;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.is-sticky :is(.visit-film, .scene-image)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--paper), transparent 24%),
+    linear-gradient(180deg, var(--paper), transparent 11%, transparent 88%, var(--paper));
+}
+.is-sticky :is(.visit-film video, .scene-image img) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.is-sticky .visit-film { display: block; opacity: 0; }
+.visit.has-film .visit-film { opacity: 1; }
+.visit.has-film .scene-image { display: none; }
+@media (max-width: 800px) {
+  .scene-image { aspect-ratio: 16 / 9; }
+  .scene-image img { object-fit: contain; }
+  .visit.is-sticky {
+    --stage-height: min(calc(100svh - var(--header)), calc(56.25vw + 350px));
+    --shot-top: clamp(12px, 3.6svh, 34px);
+    height: calc(var(--stage-height) * 2.95);
+  }
+  .is-sticky .scene { display: grid; align-items: start; }
+  .is-sticky :is(.visit-film, .scene-image) {
+    inset: var(--shot-top) 0 auto;
+    width: 100%;
+    transform: none;
+  }
+  .is-sticky :is(.visit-film, .scene-image)::after {
+    background: linear-gradient(180deg, var(--paper), transparent 9%, transparent 86%, var(--paper));
+  }
+  .is-sticky .scene-image::before { display: none; }
+  .is-sticky .scene-inner { margin-top: 0; padding-block: calc(var(--shot-top) + 56.25vw + 15px) 70px; }
+  .is-sticky :is(h1, h2) { font-size: clamp(2.1rem, 8.4vw, 3.9rem); margin-block: .16em .23em; }
+  .is-sticky .title-line { display: inline; }
   .is-sticky .eyebrow { font-size: .78rem; }
-  .is-sticky .scene-copy > p:not(.eyebrow) { line-height: 1.45; }
-  .is-sticky .title-line { display: inline-block; vertical-align: top; }
+  .is-sticky .scene-copy > p:not(.eyebrow) { line-height: 1.4; }
   .is-sticky .actions { gap: 8px 16px; margin-top: 12px; }
   .is-sticky .scene-copy > .text-link { margin-top: 3px; }
-  .is-sticky .story-light { inset-inline: 0; }
   .is-sticky .scene-nav { bottom: 14px; }
   .is-sticky .scene-nav a { padding-inline: clamp(9px, 3vw, 14px); font-size: .8125rem; }
 }
-/* The moving image is shared by the three text scenes. */
-.visit.has-film .visit-frame { background: var(--film-bg, var(--paper)); }
-.visit.has-film .scene {
-  z-index: 1;
-  background: transparent;
-  clip-path: none;
-}
-.visit.has-film .scene-image { visibility: hidden; }
-.visit.has-film .story-light { display: none; }
-.visit.has-film .visit-film {
-  display: block;
-  position: absolute;
-  inset: 0 0 0 29%;
-  overflow: hidden;
-  pointer-events: none;
-}
-.visit-film canvas { display: block; width: 100%; height: 100%; }
-.visit-film::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, var(--film-bg, var(--paper)) 4%, transparent 43%);
-}
-@media (max-width: 800px) {
-  .visit.has-film .visit-film { inset: 0 0 auto; height: 67%; }
-  .visit-film::after {
-    background: linear-gradient(0deg, var(--film-bg, var(--paper)), transparent 44%);
-  }
-}
 @media (max-width: 800px) and (max-height: 639px) {
-  .is-sticky .scene-inner { padding-bottom: 66px; }
   .is-sticky :is(h1, h2) { font-size: clamp(1.95rem, 8vw, 3rem); }
-  .is-sticky .scene-copy > p:not(.eyebrow) { line-height: 1.35; }
   .is-sticky .scene-nav { bottom: 9px; }
 }
 @media (max-width: 520px) {
