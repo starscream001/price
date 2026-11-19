@@ -7,6 +7,8 @@
   const chapters = [...document.querySelectorAll(".orbit-chapter")];
   const links = [...gallery.querySelectorAll(".orbit-markers a")];
   const label = gallery.querySelector(".orbit-current");
+  const mode = gallery.querySelector(".orbit-mode");
+  let manual = false, manualStart = 0;
   const degrees = gallery.querySelector(".orbit-degrees");
   const prices = document.querySelector("#services");
   const mobile = matchMedia("(max-width:760px)");
@@ -75,7 +77,7 @@
     return target;
   }
   function submitCamera() {
-    if (!basis || !api || reduced.matches) return;
+    if (!basis || !api || reduced.matches || manual) return;
     const { center, front, right, length } = basis;
     const aim = center.map((v,i) => v + length * (state.side * right[i] + state.front * front[i] + (i === 2 ? state.up : 0)));
     const yaw = state.yaw * rad, cosPitch = Math.cos(state.pitch);
@@ -85,7 +87,7 @@
     const first = !hasSent;
     hasSent = true;
     api.setCameraLookAt(eye, aim, 0, first ? err => {
-      if (!err && !reduced.matches) art.setAttribute("data-ready","");
+      if (!err && !reduced.matches) { art.setAttribute("data-ready",""); mode.hidden = false; }
       else if (err) hasSent = false;
     } : undefined);
   }
@@ -99,6 +101,7 @@
     const angle = mix(+chapters[i].dataset.angle, +chapters[j].dataset.angle, t);
     const visible = i !== j && marks[j]-scrollY < (innerHeight-header.offsetHeight-(mobile.matches?gallery.offsetHeight:0)) * 0.23 ? j : i;
     setChapter(visible);
+    if (manual && Math.abs(scrollY-manualStart) > 16) setManual(false);
     const target = cameraTarget(angle);
     const dt = clamp(now - lastTime, 1, 90);
     lastTime = now;
@@ -118,25 +121,52 @@
     if (moving && step < 1) schedule();
   }
 
+  function setManual(on) {
+    manual = on;
+    manualStart = scrollY;
+    mode.textContent = on ? "К прокрутке" : "Вращать рукой";
+    mode.setAttribute("aria-pressed",String(on));
+    art.toggleAttribute("data-manual",on);
+    frame.tabIndex = on ? 0 : -1;
+    frame.setAttribute("aria-hidden",String(!on));
+    api?.setUserInteraction(on);
+    cameraDirty = true;
+    schedule();
+  }
+  mode.addEventListener("click", () => setManual(!manual));
+  function captureOpeningPose(viewer) {
+    // Some embeds still animate to the saved pose after reporting viewerready.
+    // Use the settled authored view as the common scale for every service.
+    let previous = null, still = 0;
+    function sample() {
+      viewer.getCameraLookAt((err, camera) => {
+        if (err || !camera) return;
+        const delta = camera.position.map((v,i) => v - camera.target[i]);
+        const h = Math.hypot(delta[0],delta[1]), length = Math.hypot(...delta);
+        if (!h || !length) return;
+        const coords = [...camera.position,...camera.target];
+        still = previous && Math.hypot(...coords.map((v,i)=>v-previous[i])) < length * 0.0005 ? still+1 : 0;
+        previous = coords;
+        if (still < 3) { setTimeout(sample,160); return; }
+        const front = [delta[0]/h,delta[1]/h,0];
+        basis = {center:camera.target, length, front, right:[-front[1],front[0],0]};
+        cameraDirty = true; schedule();
+      });
+    }
+    setTimeout(sample,1000);
+  }
   function connect() {
     const client = new window.Sketchfab(frame);
     client.init("050df1b193cb491baf1b0d186e184b2f", {
-      autostart:1, preload:0, transparent:1, ui_controls:0, ui_infos:0, ui_hint:0,
+      autostart:1, camera:0, preload:0, transparent:1, ui_controls:0, ui_infos:0, ui_hint:0,
       ui_stop:0, ui_annotations:0, scrollwheel:0, autospin:0, dnt:1,
       success(viewer) {
         api = viewer;
         viewer.addEventListener("viewerready", () => {
           viewer.setUserInteraction(false);
           viewer.setBackground({ transparent:true });
-          viewer.getCameraLookAt((err, camera) => {
-            if (err || !camera) return;
-            const delta = camera.position.map((v,i) => v - camera.target[i]);
-            const h = Math.hypot(delta[0],delta[1]), length = Math.hypot(...delta);
-            if (!h || !length) return;
-            const front = [delta[0]/h,delta[1]/h,0];
-            basis = {center:camera.target, length, front, right:[-front[1],front[0],0]};
-            cameraDirty = true; schedule();
-          });
+          viewer.setPostProcessing({ vignetteEnable:false });
+          captureOpeningPose(viewer);
         });
         viewer.start();
       },
@@ -155,6 +185,7 @@
   function changeZone(event) {
     const summary = event.target.closest("summary");
     if (!summary) return;
+    if (manual) setManual(false);
     const item = summary.parentElement;
     if (!item.dataset.zone) return;
     // Native details activation runs after click, including Enter/Space activation.
@@ -179,6 +210,8 @@
   window.addEventListener("online",loadViewer);
   reduced.addEventListener("change", () => {
     if (reduced.matches) {
+      if (manual) setManual(false);
+      mode.hidden = true;
       art.removeAttribute("data-ready");
       hasSent = false; active = -1;
     } else { loadViewer(); cameraDirty = true; }
