@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Мария Колесник, подолог во Всеволожске. Аппаратный педикюр, уход за стопами и ногтями. Услуги, цены и запись на приём.">
-  <meta name="theme-color" content="#162922">
+  <meta name="theme-color" content="#f3efe6">
   <meta property="og:title" content="Мария Колесник · Подолог во Всеволожске">
   <meta property="og:description" content="Подологический педикюр и уход за стопами. Услуги, цены и запись.">
   <meta property="og:image" content="maria.jpg">
@@ -13,9 +13,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="podology.css?v=studio1">
-  <link rel="stylesheet" href="orbit.css?v=1">
+  <link rel="preconnect" href="https://sketchfab.com">
+  <link rel="stylesheet" href="orbit.css?v=scan2">
   <script src="podology.js?v=studio1" defer></script>
-  <script type="module" src="orbit.js?v=1"></script>
+  <script defer src="orbit.js?v=scan2"></script>
 </head>
 <body class="orbit-page">
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -43,10 +44,13 @@
   <main id="content">
     <div class="orbit-layout" id="top">
       <div class="orbit-gallery" aria-label="Круговой обзор стоп">
-        <div class="orbit-art" aria-hidden="true">
-          <img class="orbit-poster" src="images/orbit/opening.jpg" alt="" width="940" height="940" fetchpriority="high">
-          <div class="orbit-angles"></div>
-          <canvas class="orbit-canvas"></canvas>
+        <div class="orbit-art">
+          <div class="orbit-ring" aria-hidden="true"></div>
+          <picture class="orbit-poster" aria-hidden="true">
+            <source media="(max-width: 760px)" srcset="images/visit/mobile-opening.jpg">
+            <img src="images/visit/wide-opening.jpg" alt="" fetchpriority="high" width="1152" height="768">
+          </picture>
+          <iframe class="orbit-viewer" title="Трёхмерная модель стоп" tabindex="-1" allow="autoplay; fullscreen" aria-hidden="true"></iframe>
         </div>
         <nav class="orbit-index" aria-label="Разделы на орбите">
           <span class="orbit-current" aria-hidden="true">До приёма</span>
@@ -68,7 +72,7 @@
             <h1>Забота<br><em>о стопах</em></h1>
             <p class="orb-lead">Подологический педикюр и уход за ногтями у Марии Колесник.</p>
             <div class="orb-actions"><a class="pill pill-light" href="#booking">Записаться на приём</a><a class="text-link" href="#services">Услуги и цены</a></div>
-            <a class="orbit-scroll" href="#services"><i aria-hidden="true"></i>Прокрутите, чтобы осмотреть стопы</a>
+            <a class="orbit-scroll" href="#services"><i aria-hidden="true"></i>Прокрутите для кругового обзора</a>
           </div>
         </section>
         <section class="orbit-chapter orbit-prices" id="services" data-angle="108">
@@ -78,26 +82,26 @@
             <h2>Услуги <em>и цены</em></h2>
             <div class="photo-note"><img src="images/visit/wide-procedure.jpg" width="1152" height="768" alt="Аппаратная обработка пятки" loading="lazy"><p>Мария осмотрит кожу и ногти, подберёт процедуру и объяснит каждый шаг.</p></div>
             <div class="price-list">
-          <details class="price-group" open><summary><span>Педикюр</span><small>2 500–3 500 ₽</small></summary>
-          <details class="service"><summary><span>Профилактический аппаратный педикюр</span><strong>3 000 ₽</strong></summary><p>Аппаратная обработка десяти ногтевых пластин и кожи стоп.</p></details>
-          <details class="service"><summary><span>Медицинский аппаратный педикюр</span><strong>3 500 ₽</strong></summary><p>Обработка ногтей и кожи стоп. Объём работы обсуждается на приёме.</p></details>
-          <details class="service"><summary><span>Классический педикюр</span><strong>2 500 ₽</strong></summary><p>Обработка стоп и десяти ногтевых пластин.</p></details>
-          <details class="service"><summary><span>Комбинированный педикюр</span><strong>3 000 ₽</strong></summary><p>Сочетание аппаратной и классической техники.</p></details>
+          <details class="price-group" data-zone="whole"><summary><span>Педикюр</span><small>2 500–3 500 ₽</small></summary>
+          <details class="service" data-zone="whole"><summary><span>Профилактический аппаратный педикюр</span><strong>3 000 ₽</strong></summary><p>Аппаратная обработка десяти ногтевых пластин и кожи стоп.</p></details>
+          <details class="service" data-zone="whole"><summary><span>Медицинский аппаратный педикюр</span><strong>3 500 ₽</strong></summary><p>Обработка ногтей и кожи стоп. Объём работы обсуждается на приёме.</p></details>
+          <details class="service" data-zone="whole"><summary><span>Классический педикюр</span><strong>2 500 ₽</strong></summary><p>Обработка стоп и десяти ногтевых пластин.</p></details>
+          <details class="service" data-zone="whole"><summary><span>Комбинированный педикюр</span><strong>3 000 ₽</strong></summary><p>Сочетание аппаратной и классической техники.</p></details>
           </details>
-          <details class="price-group"><summary><span>Уход за ногтями</span><small>2 000–3 000 ₽</small></summary>
-          <details class="service"><summary><span>Аппаратный педикюр здоровых ногтей</span><strong>2 000 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
-          <details class="service"><summary><span>Аппаратная обработка ногтей средней сложности</span><strong>2 500 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
-          <details class="service"><summary><span>Аппаратная обработка ногтей высокой сложности</span><strong>3 000 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
+          <details class="price-group" data-zone="nails"><summary><span>Уход за ногтями</span><small>2 000–3 000 ₽</small></summary>
+          <details class="service" data-zone="nails"><summary><span>Аппаратный педикюр здоровых ногтей</span><strong>2 000 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
+          <details class="service" data-zone="nails"><summary><span>Аппаратная обработка ногтей средней сложности</span><strong>2 500 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
+          <details class="service" data-zone="nails"><summary><span>Аппаратная обработка ногтей высокой сложности</span><strong>3 000 ₽</strong></summary><p>Обработка десяти ногтевых пластин без обработки стоп.</p></details>
           </details>
-          <details class="price-group"><summary><span>Локальная обработка</span><small>900–2 000 ₽</small></summary>
-          <details class="service"><summary><span>Обработка кожи двух стоп</span><strong>1 500 ₽</strong></summary><p>Обработка кожи обеих стоп без патологических изменений.</p></details>
-          <details class="service"><summary><span>Обработка кожи с гиперкератозом и трещинами</span><strong>2 000 ₽</strong></summary><p>Обработка кожи стоп без обработки ногтей.</p></details>
-          <details class="service"><summary><span>Обработка одной мозоли</span><strong>900 ₽</strong></summary><p>Стержневые, плоские и межпальцевые мозоли.</p></details>
-          <details class="service"><summary><span>Обработка вросшего ногтя, 1 зона</span><strong>1 000 ₽</strong></summary><p>Обработка одного края ногтевой пластины.</p></details>
+          <details class="price-group" data-zone="sole"><summary><span>Локальная обработка</span><small>900–2 000 ₽</small></summary>
+          <details class="service" data-zone="sole"><summary><span>Обработка кожи двух стоп</span><strong>1 500 ₽</strong></summary><p>Обработка кожи обеих стоп без патологических изменений.</p></details>
+          <details class="service" data-zone="heel"><summary><span>Обработка кожи с гиперкератозом и трещинами</span><strong>2 000 ₽</strong></summary><p>Обработка кожи стоп без обработки ногтей.</p></details>
+          <details class="service" data-zone="sole"><summary><span>Обработка одной мозоли</span><strong>900 ₽</strong></summary><p>Стержневые, плоские и межпальцевые мозоли.</p></details>
+          <details class="service" data-zone="bigtoe"><summary><span>Обработка вросшего ногтя, 1 зона</span><strong>1 000 ₽</strong></summary><p>Обработка одного края ногтевой пластины.</p></details>
           </details>
-          <details class="price-group"><summary><span>Коррекция ногтей</span><small>1 500–3 000 ₽</small></summary>
-          <details class="service"><summary><span>Нитиноловая нить на большом пальце</span><strong>3 000 ₽</strong></summary><p>Коррекция ногтевой пластины с помощью нитиноловой нити.</p></details>
-          <details class="service"><summary><span>Нитиноловая нить на маленьком пальце</span><strong>1 500 ₽</strong></summary><p>Коррекция ногтевой пластины с помощью нитиноловой нити.</p></details>
+          <details class="price-group" data-zone="nails"><summary><span>Коррекция ногтей</span><small>1 500–3 000 ₽</small></summary>
+          <details class="service" data-zone="bigtoe"><summary><span>Нитиноловая нить на большом пальце</span><strong>3 000 ₽</strong></summary><p>Коррекция ногтевой пластины с помощью нитиноловой нити.</p></details>
+          <details class="service" data-zone="outertoes"><summary><span>Нитиноловая нить на маленьком пальце</span><strong>1 500 ₽</strong></summary><p>Коррекция ногтевой пластины с помощью нитиноловой нити.</p></details>
           </details>
         </div>
           </div>
@@ -161,7 +165,7 @@
   </main>
   <footer>
     <div class="shell foot-inner">
-      <p>Мария Колесник · Подолог</p>
+      <div><p>Мария Колесник · Подолог</p><a class="model-credit" href="https://sketchfab.com/3d-models/female-feet-050df1b193cb491baf1b0d186e184b2f">3D-модель стоп · Lassi Kaukonen / Sketchfab</a></div>
       <nav aria-label="Социальные сети">
         <a href="https://vk.com/maria_masyana">ВКонтакте</a>
         <a href="https://max.ru/u/f9LHodD0cOIDWlmFbb30WPRnYsYARx5hOiN-JXVBSh670RS9WmrFy0OLJL8">MAX</a>

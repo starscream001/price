@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Мария Колесник, подолог во Всеволожске. Аппаратный педикюр, уход за стопами и ногтями. Услуги, цены и запись на приём.">
-  <meta name="theme-color" content="#162922">
+  <meta name="theme-color" content="#f3efe6">
   <meta property="og:title" content="Мария Колесник · Подолог во Всеволожске">
   <meta property="og:description" content="Подологический педикюр и уход за стопами. Услуги, цены и запись.">
   <meta property="og:image" content="maria.jpg">
@@ -13,11 +13,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="podology.css?v=studio1">
-  <link rel="stylesheet" href="orbit.css?v=1">
+  <link rel="preconnect" href="https://sketchfab.com">
+  <link rel="stylesheet" href="orbit.css?v=scan2">
   <script src="podology.js?v=studio1" defer></script>
   <script src="products.js" defer></script>
   <script src="catalog.js" defer></script>
-  <script type="module" src="orbit.js?v=1"></script>
+  <script defer src="orbit.js?v=scan2"></script>
 </head>
 <body class="orbit-page">
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -45,10 +46,13 @@
   <main id="content">
     <div class="orbit-layout" id="top">
       <div class="orbit-gallery" aria-label="Круговой обзор стоп">
-        <div class="orbit-art" aria-hidden="true">
-          <img class="orbit-poster" src="images/orbit/care.jpg" alt="" width="940" height="940" fetchpriority="high">
-          <div class="orbit-angles"></div>
-          <canvas class="orbit-canvas"></canvas>
+        <div class="orbit-art">
+          <div class="orbit-ring" aria-hidden="true"></div>
+          <picture class="orbit-poster" aria-hidden="true">
+            <source media="(max-width: 760px)" srcset="images/visit/mobile-finish.jpg">
+            <img src="images/visit/wide-finish.jpg" alt="" fetchpriority="high" width="1152" height="768">
+          </picture>
+          <iframe class="orbit-viewer" title="Трёхмерная модель стоп" tabindex="-1" allow="autoplay; fullscreen" aria-hidden="true"></iframe>
         </div>
         <nav class="orbit-index" aria-label="Разделы на орбите">
           <span class="orbit-current" aria-hidden="true">Средства</span>
@@ -103,7 +107,7 @@
   </main>
   <footer>
     <div class="shell foot-inner">
-      <p>Мария Колесник · Подолог</p>
+      <div><p>Мария Колесник · Подолог</p><a class="model-credit" href="https://sketchfab.com/3d-models/female-feet-050df1b193cb491baf1b0d186e184b2f">3D-модель стоп · Lassi Kaukonen / Sketchfab</a></div>
       <nav aria-label="Социальные сети">
         <a href="https://vk.com/maria_masyana">ВКонтакте</a>
         <a href="https://max.ru/u/f9LHodD0cOIDWlmFbb30WPRnYsYARx5hOiN-JXVBSh670RS9WmrFy0OLJL8">MAX</a>
