@@ -23,12 +23,12 @@
   const zones = {
     whole: { ...overview, yaw: 55, pitch: 0.43 },
     sole: { ...overview, yaw: 14, pitch: 0.12, distance: 0.80, side: 0.10 },
-    heel: { ...overview, yaw: 47, pitch: -0.04, distance: 0.65, side: 0.11, up: -0.12 },
-    nails: { ...overview, yaw: 150, pitch: 0.74, distance: 0.78, side: 0.10, up: 0.09 },
-    bigtoe: { ...overview, yaw: 136, pitch: 0.78, distance: 0.64, side: 0.085, up: 0.12 },
-    outertoes: { ...overview, yaw: 166, pitch: 0.69, distance: 0.66, side: 0.16, up: 0.11 }
+    heel: { ...overview, yaw: 47, pitch: -0.04, distance: 0.72, side: 0.17, front: -0.06, up: -0.085 },
+    nails: { ...overview, yaw: 150, pitch: 0.74, distance: 0.83, side: 0.15, front: 0.09, up: 0.13 },
+    bigtoe: { ...overview, yaw: 136, pitch: 0.78, distance: 0.72, side: 0.20, front: 0.12, up: 0.15 },
+    outertoes: { ...overview, yaw: 166, pitch: 0.69, distance: 0.72, side: 0.24, front: 0.12, up: 0.145 }
   };
-  const baseYaw = -41;
+  const baseYaw = -135;
   const state = { ...overview, yaw: baseYaw + Number(chapters[0].dataset.angle) };
   const photos = {exam:"opening", services:"procedure", "home-care":"finish",
     about:"opening", booking:"finish", catalog:"finish", directions:"finish", selection:"finish"};
@@ -108,12 +108,13 @@
     const step = !hasSent || reduced.matches ? 1 : 1 - Math.exp(-dt / 105);
     let moving = false;
     for (const key of Object.keys(state)) {
-      const error = target[key] - state[key];
+      let error = target[key] - state[key];
+      if (key === "yaw") error -= 360 * Math.round(error / 360);
       const threshold = key === "yaw" ? 0.05 : 0.0004;
       if (Math.abs(error) > threshold) {
         state[key] += error * step;
         moving = true;
-      } else state[key] = target[key];
+      } else state[key] += error;
     }
     degrees.textContent = Math.round(angle) + "°";
     if (cameraDirty || moving) submitCamera();
@@ -193,9 +194,13 @@
       if (item.open) {
         selectedZone = item.dataset.zone;
         for (const sibling of item.parentElement.children) {
-          if (sibling !== item && sibling.matches("details[open]")) sibling.open = false;
+          if (sibling !== item && sibling.matches("details[open]")) {
+            sibling.open = false;
+            sibling.querySelectorAll("details[open]").forEach(child => { child.open = false; });
+          }
         }
       } else {
+        item.querySelectorAll("details[open]").forEach(child => { child.open = false; });
         selectedZone = item.parentElement.closest("details[open][data-zone]")?.dataset.zone || null;
       }
       layoutChanged();
